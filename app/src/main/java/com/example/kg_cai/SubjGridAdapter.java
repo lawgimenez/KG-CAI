@@ -1,5 +1,6 @@
 package com.example.kg_cai;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.view.LayoutInflater;
@@ -46,6 +47,15 @@ public class SubjGridAdapter extends BaseAdapter {
         }else{
             view = convertView;
         }
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(parent.getContext(),SetsActivity.class);
+                intent.putExtra("SUBJECT_PICKED", subjList.get(position)); //pass the name of the clicked subject to the setsActivity
+                parent.getContext().startActivity(intent);
+            }
+        });
 
         ((TextView) view.findViewById(R.id.subjName_itemLayout)).setText(subjList.get(position));
         ((ImageView) view.findViewById(R.id.subjLogo_itemLayout)).setImageResource(imageid[position]);
