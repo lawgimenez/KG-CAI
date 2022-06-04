@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try{
                     sleep(3000);
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
