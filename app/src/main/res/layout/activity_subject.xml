@@ -18,7 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Pick Subjects"
-        app:titleTextColor="@color/white"/>
+        app:titleTextColor="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
     <GridView
         android:id="@+id/subj_gridview"

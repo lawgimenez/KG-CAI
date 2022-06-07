@@ -1,5 +1,6 @@
 package com.example.kg_cai;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,14 @@ public class SetsAdapter extends BaseAdapter {
         }else{
             view = convertView;
         }
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(parent.getContext(), QuestionActivity.class); //question activity will start after clicking one set
+                parent.getContext().startActivity(intent);
+            }
+        });
 
         ((TextView) view.findViewById(R.id.txtSetName)).setText("Quiz ....");
         ((TextView) view.findViewById(R.id.txtSetNumber)).setText(String.valueOf(position+1));

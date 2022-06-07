@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tvQuesNumber"
+            android:id="@+id/tvQuesNumber_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -29,7 +29,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvQuestion"
+            android:id="@+id/tvQuestion_question"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_margin="16dp"
@@ -60,42 +60,46 @@
         app:layout_constraintVertical_bias="0.0">
 
 
-        <Button
-            android:id="@+id/btnOption1"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOption1_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:background="@drawable/round_bg_white_blackcorner"
+            android:backgroundTint="#b4b4b4"
             android:elevation="3dp"
             android:padding="13dp"
             android:text="Answer 1" />
 
-        <Button
-            android:id="@+id/btnOption2"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOption2_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:background="@drawable/round_bg_white_blackcorner"
+            android:backgroundTint="#b4b4b4"
             android:elevation="3dp"
             android:padding="13dp"
             android:text="Answer 2" />
 
-        <Button
-            android:id="@+id/btnOption3"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOption3_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:background="@drawable/round_bg_white_blackcorner"
+            android:backgroundTint="#b4b4b4"
             android:elevation="3dp"
             android:padding="13dp"
             android:text="Answer 3" />
 
-        <Button
-            android:id="@+id/btnOption4"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOption4_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:background="@drawable/round_bg_white_blackcorner"
+            android:backgroundTint="#b4b4b4"
             android:elevation="3dp"
             android:padding="13dp"
             android:text="Answer 4" />
@@ -103,7 +107,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvCountdown"
+        android:id="@+id/tvCountdown_question"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@color/black"
@@ -125,7 +129,7 @@
         android:backgroundTint="#03A9F4"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/tvCountdown"
+        app:layout_constraintEnd_toStartOf="@+id/tvCountdown_question"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:srcCompat="@drawable/play_icon" />
 
@@ -138,7 +142,7 @@
         android:backgroundTint="#03A9F4"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintStart_toEndOf="@+id/tvCountdown"
+        app:layout_constraintStart_toEndOf="@+id/tvCountdown_question"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:srcCompat="@drawable/play_icon" />
 
