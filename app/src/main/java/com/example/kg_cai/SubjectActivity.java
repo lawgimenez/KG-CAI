@@ -1,5 +1,7 @@
 package com.example.kg_cai;
 
+import static com.example.kg_cai.SplashActivity.catList;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -37,16 +39,7 @@ public class SubjectActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Subjects");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        List<String> subjList = new ArrayList<>();
-
-
-
-        subjList.add("Numeracy");
-        subjList.add("Language Literacy");
-        subjList.add("Filipino");
-        subjList.add("Reading");
-
-        SubjGridAdapter adapter = new SubjGridAdapter(subjList,imageid); //pass to the subjGridAdapter constructor\
+        SubjGridAdapter adapter = new SubjGridAdapter(catList,imageid); //pass to the subjGridAdapter constructor\
         subjGridView.setAdapter(adapter);
 
     }
