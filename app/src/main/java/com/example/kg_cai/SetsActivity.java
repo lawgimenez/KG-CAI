@@ -4,14 +4,27 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SetsActivity extends AppCompatActivity {
 
     private Toolbar setsToolbar;
     private GridView setsGridView;
+    private FirebaseFirestore firestore;
+
+    private int category_id;
+    private Dialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,27 +34,56 @@ public class SetsActivity extends AppCompatActivity {
         setsToolbar = findViewById(R.id.setsToolbar);
         setsGridView = findViewById(R.id.setsGridView);
 
-        String title = getIntent().getStringExtra("SUBJECT_PICKED");
+        loadingDialog = new Dialog(SetsActivity.this);
+        loadingDialog.setContentView(R.layout.loading_progress_bar); //initialize the loading dialog
+        loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingDialog.show();
 
+        category_id = getIntent().getIntExtra("SUBJ_ID",1); //it is from the subjGridAdapter
+
+        String title = getIntent().getStringExtra("SUBJECT_PICKED");
         setSupportActionBar(setsToolbar);
         getSupportActionBar().setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        SetsAdapter adapter = new SetsAdapter("Quiz", 3); //pass to the constructor of setsAdapter
+        firestore = FirebaseFirestore.getInstance(); //initialization of firestore
 
-        setsGridView.setAdapter(adapter);
+        loadSets();
+
+//        SetsAdapter adapter = new SetsAdapter("Quiz", 3); //pass to the constructor of setsAdapter
+//
+//        setsGridView.setAdapter(adapter);
 
     }
 
+    private void loadSets() {
+        firestore.collection("QUIZ").document("CAT" + String.valueOf(category_id))
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
 
+                    DocumentSnapshot doc = task.getResult();
 
+                    if(doc.exists()){
+                        long sets = (long) doc.get("SETS");//get the SETS of categories in firebase
 
+                            SetsAdapter adapter = new SetsAdapter("Quiz", Integer.valueOf((int)sets)); //pass to the constructor of setsAdapter
 
+                            setsGridView.setAdapter(adapter);
 
-
-
-
-
+                    }else{
+                        Toast.makeText(getApplicationContext(), "No Sets found", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                loadingDialog.cancel();
+            }
+        });
+    }
 
 
     @Override

@@ -53,6 +53,7 @@ public class SubjGridAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(parent.getContext(),SetsActivity.class);
                 intent.putExtra("SUBJECT_PICKED", subjList.get(position)); //pass the name of the clicked subject to the setsActivity
+                intent.putExtra("SUBJ_ID", position + 1); //pass the subj position to sets activity
                 parent.getContext().startActivity(intent);
             }
         });
