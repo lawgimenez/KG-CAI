@@ -23,7 +23,7 @@ public class SetsActivity extends AppCompatActivity {
     private GridView setsGridView;
     private FirebaseFirestore firestore;
 
-    private int category_id;
+    public static int category_id;
     private Dialog loadingDialog;
 
     @Override
@@ -41,6 +41,7 @@ public class SetsActivity extends AppCompatActivity {
         loadingDialog.show();
 
         category_id = getIntent().getIntExtra("SUBJ_ID",1); //it is from the subjGridAdapter
+
 
         String title = getIntent().getStringExtra("SUBJECT_PICKED");
         setSupportActionBar(setsToolbar);

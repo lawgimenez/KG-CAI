@@ -1,19 +1,31 @@
 package com.example.kg_cai;
 
+import static com.example.kg_cai.SetsActivity.category_id;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +34,12 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     private TextView txtTimer, txtQuestion, txtQuesNumber;
     private Button btnOption1, btnOption2, btnOption3, btnOption4;
+    private FirebaseFirestore firestore;
+    private int setNo;
 
     private List<Question> questionList; //from Question class
+
+    private Dialog loadingDialog;
 
     private int quesNum,score;
 
@@ -34,6 +50,14 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
+        firestore = FirebaseFirestore.getInstance();
+
+        loadingDialog = new Dialog(QuestionActivity.this);
+        loadingDialog.setContentView(R.layout.loading_progress_bar); //initialize the loading dialog
+        loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingDialog.show();
+
         txtTimer = findViewById(R.id.tvCountdown_question);
         txtQuestion = findViewById(R.id.tvQuestion_question);
         txtQuesNumber = findViewById(R.id.tvQuesNumber_question);
@@ -42,6 +66,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         btnOption2 = findViewById(R.id.btnOption2_question);
         btnOption3 = findViewById(R.id.btnOption3_question);
         btnOption4 = findViewById(R.id.btnOption4_question);
+
+        setNo = getIntent().getIntExtra("SETNO",1); //it is from setsAdapter class
 
         btnOption1.setOnClickListener(this);
         btnOption2.setOnClickListener(this);
@@ -55,12 +81,32 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     private void getQuestionList() {
         questionList = new ArrayList<>();
-        questionList.add(new Question("1+1=?","5","4","3","2",4));
-        questionList.add(new Question("5+5=?","10","4","3","2",1));
-        questionList.add(new Question("15+1=?","5","4","16","2",3));
 
-        setQuestion();
+        firestore.collection("QUIZ").document("CAT"+String.valueOf(category_id)) //from quiz to CAT to SET to question
+                .collection("SET" + String.valueOf(setNo))
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    QuerySnapshot questions = task.getResult();
 
+                    for(QueryDocumentSnapshot doc : questions){  //get from the question in firebase and the value will go to Question class and pass it to the questionList
+                            questionList.add(new Question(doc.getString("QUESTION"),
+                                    doc.getString("A"),
+                                    doc.getString("B"),
+                                    doc.getString("C"),
+                                    doc.getString("D"),
+                                    Integer.valueOf(doc.getString("ANSWER"))));
+                        };
+                    //once the questions are ready it will call the setQuestion method
+                    setQuestion();
+
+                }else{
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                loadingDialog.cancel();
+            }
+        });
     }
 
     private void setQuestion() {

@@ -46,6 +46,7 @@ public class SetsAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(parent.getContext(), QuestionActivity.class); //question activity will start after clicking one set
+                intent.putExtra("SETNO", position+1);
                 parent.getContext().startActivity(intent);
             }
         });
