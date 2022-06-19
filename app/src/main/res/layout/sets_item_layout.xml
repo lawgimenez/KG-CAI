@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="380dp"
     android:orientation="vertical"
     android:gravity="center"
     android:layout_height="110dp"
@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:layout_margin="20dp"
         android:gravity="center"
-        android:background="#F44336"
+        android:background="#3F51B5"
         >
 
         <TextView
@@ -34,7 +34,7 @@
             android:text="Addition Quiz"
             android:gravity="center"
             android:padding="10dp"
-            android:background="#FF5722"
+            android:background="#2196F3"
             android:textColor="@color/white"
             android:textSize="25sp" />
     </LinearLayout>

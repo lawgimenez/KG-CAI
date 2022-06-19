@@ -20,6 +20,8 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
     <GridView
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:id="@+id/setsGridView"
         android:layout_width="match_parent"
         android:layout_height="0dp"

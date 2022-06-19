@@ -28,11 +28,10 @@ public class SubjectActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_subject);
 
         Integer imageid[] = {
-                R.drawable.number_logo,
                 R.drawable.language_logo,
+                R.drawable.number_logo,
                 R.drawable.filipino_logo,
                 R.drawable.read_logo
-
         };
 
         setSupportActionBar(toolbar);

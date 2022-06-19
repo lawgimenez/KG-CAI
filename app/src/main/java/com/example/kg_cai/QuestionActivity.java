@@ -1,6 +1,8 @@
 package com.example.kg_cai;
 
-import static com.example.kg_cai.SetsActivity.category_id;
+import static com.example.kg_cai.SetsActivity.setsIDs;
+import static com.example.kg_cai.SplashActivity.catList;
+import static com.example.kg_cai.SplashActivity.selected_cat_index;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,30 +14,39 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.ArrayMap;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
+
 
     private TextView txtTimer, txtQuestion, txtQuesNumber;
     private Button btnOption1, btnOption2, btnOption3, btnOption4;
     private FirebaseFirestore firestore;
     private int setNo;
+
+    private ImageView imgHelp;
+
+    private Toolbar quesToolbar;
 
     private List<Question> questionList; //from Question class
 
@@ -45,18 +56,22 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     private CountDownTimer countDownTimer;
 
+    Animation rotateLogoAnim;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
         firestore = FirebaseFirestore.getInstance();
-
+        
         loadingDialog = new Dialog(QuestionActivity.this);
         loadingDialog.setContentView(R.layout.loading_progress_bar); //initialize the loading dialog
         loadingDialog.setCancelable(false);
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         loadingDialog.show();
+
+        imgHelp = findViewById(R.id.img_help);
 
         txtTimer = findViewById(R.id.tvCountdown_question);
         txtQuestion = findViewById(R.id.tvQuestion_question);
@@ -74,43 +89,76 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         btnOption3.setOnClickListener(this);
         btnOption4.setOnClickListener(this);
 
-    getQuestionList();
+        questionList = new ArrayList<>();
+
+        getQuestionList();
+
+        rotateLogoAnim();
+
+        imgHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     score = 0;
     }
 
     private void getQuestionList() {
-        questionList = new ArrayList<>();
+        questionList.clear();
 
-        firestore.collection("QUIZ").document("CAT"+String.valueOf(category_id)) //from quiz to CAT to SET to question
-                .collection("SET" + String.valueOf(setNo))
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    QuerySnapshot questions = task.getResult();
+        firestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
+                .collection(setsIDs.get(setNo)).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                    for(QueryDocumentSnapshot doc : questions){  //get from the question in firebase and the value will go to Question class and pass it to the questionList
-                            questionList.add(new Question(doc.getString("QUESTION"),
-                                    doc.getString("A"),
-                                    doc.getString("B"),
-                                    doc.getString("C"),
-                                    doc.getString("D"),
-                                    Integer.valueOf(doc.getString("ANSWER"))));
-                        };
-                    //once the questions are ready it will call the setQuestion method
-                    setQuestion();
+                        Map<String, QueryDocumentSnapshot> docList = new ArrayMap<>();
 
-                }else{
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-                loadingDialog.cancel();
-            }
-        });
+                        for(QueryDocumentSnapshot doc : queryDocumentSnapshots)
+                        {
+                            docList.put(doc.getId(),doc); //pass the id of the QueryDocumentSnapshot loop
+                        }
+
+                        QueryDocumentSnapshot quesListDoc  = docList.get("QUESTIONS_LIST");
+
+                        String count = quesListDoc.getString("COUNT"); //get the value of the COUNT in question_list
+
+                        for(int i=0; i < Integer.valueOf(count); i++)
+                        {
+                            String quesID = quesListDoc.getString("Q" + String.valueOf(i+1) + "_ID"); //get the id of the question in question_list
+
+                            QueryDocumentSnapshot quesDoc = docList.get(quesID);
+
+                            questionList.add(new Question( //add int questionList
+                                    quesDoc.getString("QUESTION"),
+                                    quesDoc.getString("A"),
+                                    quesDoc.getString("B"),
+                                    quesDoc.getString("C"),
+                                    quesDoc.getString("D"),
+                                    Integer.valueOf(quesDoc.getString("ANSWER"))
+                            ));
+
+                        }
+                        //once the questions are ready it will call the setQuestion method
+                        setQuestion();
+
+                        loadingDialog.dismiss();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(QuestionActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                        loadingDialog.dismiss();
+                    }
+                });
+
     }
 
     private void setQuestion() {
-        txtTimer.setText(String.valueOf(30)); //timer start from the value 30
+        txtTimer.setText(String.valueOf(15)); //timer start from the value 30
 
         txtQuestion.setText(questionList.get(0).getQuestion()); //assigning the value into their specific palettes
         btnOption1.setText(questionList.get(0).getOptionA());
@@ -126,10 +174,16 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void startTimer() {
-         countDownTimer = new CountDownTimer(30000,1000) {
+         countDownTimer = new CountDownTimer(15000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
+                String time = "10";
                 txtTimer.setText(String.valueOf(millisUntilFinished/1000)); //setText of what was the remaining time
+                if(millisUntilFinished < 10000){
+                    txtTimer.setBackgroundColor(Color.RED);
+                }else{
+                    txtTimer.setBackgroundColor(Color.BLUE);
+                }
             }
 
             @Override
@@ -214,7 +268,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
             txtQuesNumber.setText(String.valueOf(quesNum+1)+"/"+String.valueOf(questionList.size())); //setting up what number will be in the quiz
 
-            txtTimer.setText(String.valueOf(30)); //10 seconds timer
+            txtTimer.setText(String.valueOf(60)); //10 seconds timer
             startTimer(); //start the timer again
 
         }else{
@@ -284,6 +338,14 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         super.onDestroy();
             countDownTimer.cancel();
 
+    }
+
+    private void rotateLogoAnim() {
+
+        rotateLogoAnim = AnimationUtils.loadAnimation(this, R.anim.help_logo_anim);
+        imgHelp.startAnimation(rotateLogoAnim);
+
+        
     }
 
 }

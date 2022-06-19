@@ -1,5 +1,8 @@
 package com.example.kg_cai;
 
+import static com.example.kg_cai.SplashActivity.catList;
+import static com.example.kg_cai.SplashActivity.selected_cat_index;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,18 +16,23 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SetsActivity extends AppCompatActivity {
 
     private Toolbar setsToolbar;
     private GridView setsGridView;
     private FirebaseFirestore firestore;
-
-    public static int category_id;
     private Dialog loadingDialog;
+
+    public static List<String> setsIDs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,51 +48,49 @@ public class SetsActivity extends AppCompatActivity {
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         loadingDialog.show();
 
-        category_id = getIntent().getIntExtra("SUBJ_ID",1); //it is from the subjGridAdapter
 
-
-        String title = getIntent().getStringExtra("SUBJECT_PICKED");
         setSupportActionBar(setsToolbar);
-        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setTitle(catList.get(selected_cat_index).getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firestore = FirebaseFirestore.getInstance(); //initialization of firestore
 
         loadSets();
 
-//        SetsAdapter adapter = new SetsAdapter("Quiz", 3); //pass to the constructor of setsAdapter
-//
-//        setsGridView.setAdapter(adapter);
-
     }
 
     private void loadSets() {
-        firestore.collection("QUIZ").document("CAT" + String.valueOf(category_id))
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+        setsIDs.clear();
+
+        firestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                    DocumentSnapshot doc = task.getResult();
+                long noOfSets = (long)documentSnapshot.get("SETS");
 
-                    if(doc.exists()){
-                        long sets = (long) doc.get("SETS");//get the SETS of categories in firebase
-
-                            SetsAdapter adapter = new SetsAdapter("Quiz", Integer.valueOf((int)sets)); //pass to the constructor of setsAdapter
-
-                            setsGridView.setAdapter(adapter);
-
-                    }else{
-                        Toast.makeText(getApplicationContext(), "No Sets found", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                }else{
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                for(int i=1; i <= noOfSets; i++)
+                {
+                    setsIDs.add(documentSnapshot.getString("SET" + String.valueOf(i) + "_ID"));
                 }
-                loadingDialog.cancel();
+
+                SetsAdapter adapter = new SetsAdapter(setsIDs.size());
+
+                setsGridView.setAdapter(adapter);
+
+                loadingDialog.dismiss();
+
             }
-        });
-    }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(SetsActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                        loadingDialog.dismiss();
+                    }
+                });
+        }
 
 
     @Override

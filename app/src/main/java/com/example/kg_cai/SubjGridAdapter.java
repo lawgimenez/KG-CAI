@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Random;
 
 public class SubjGridAdapter extends BaseAdapter {
-    private List<String> subjList;
+    private List<SubjectModel> subjList;
     private Integer[] imageid;
 
-    public SubjGridAdapter(List<String> subjList, Integer[] imageid) {
+    public SubjGridAdapter(List<SubjectModel> subjList, Integer[] imageid) {
         this.subjList = subjList;
         this.imageid = imageid;
     }
@@ -51,19 +51,19 @@ public class SubjGridAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SplashActivity.selected_cat_index = position;
                 Intent intent = new Intent(parent.getContext(),SetsActivity.class);
-                intent.putExtra("SUBJECT_PICKED", subjList.get(position)); //pass the name of the clicked subject to the setsActivity
-                intent.putExtra("SUBJ_ID", position + 1); //pass the subj position to sets activity
+
                 parent.getContext().startActivity(intent);
             }
         });
 
-        ((TextView) view.findViewById(R.id.subjName_itemLayout)).setText(subjList.get(position));
+        ((TextView) view.findViewById(R.id.subjName_itemLayout)).setText(subjList.get(position).getName());
         ((ImageView) view.findViewById(R.id.subjLogo_itemLayout)).setImageResource(imageid[position]);
 
-        Random rand = new Random();
-        int color = Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)); //gives you a random color for the background
-        view.setBackgroundColor(color);
+//        Random rand = new Random();
+//        int color = Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)); //gives you a random color for the background
+//        view.setBackgroundColor(color);
 
         return view;
     }

@@ -17,6 +17,10 @@ public class SetsAdapter extends BaseAdapter {
         this.numOfSets = numOfSets;
     }
 
+    public SetsAdapter(int numOfSets) {
+        this.numOfSets = numOfSets;
+    }
+
     @Override
     public int getCount() {
         return numOfSets;
@@ -46,12 +50,12 @@ public class SetsAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(parent.getContext(), QuestionActivity.class); //question activity will start after clicking one set
-                intent.putExtra("SETNO", position+1);
+                intent.putExtra("SETNO", position);
                 parent.getContext().startActivity(intent);
             }
         });
 
-        ((TextView) view.findViewById(R.id.txtSetName)).setText("Quiz ....");
+
         ((TextView) view.findViewById(R.id.txtSetNumber)).setText(String.valueOf(position+1));
 
 

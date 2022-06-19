@@ -25,7 +25,8 @@ public class SplashActivity extends AppCompatActivity {
 
     private ImageView imgLogo;
 
-    public static List<String> catList = new ArrayList<>(); //this is the arraylist of the subjects from firebase
+    public static List<SubjectModel> catList = new ArrayList<>(); //this is the arraylist of the subjects from firebase
+    public static int selected_cat_index = 0;
     private FirebaseFirestore firestore;
 
     @Override
@@ -69,9 +70,9 @@ public class SplashActivity extends AppCompatActivity {
                         long count = (long)doc.get("COUNT"); //get the COUNT of categories in firebase
 
                         for(int i = 1; i<=count; i++){
-                            String catName = doc.getString("CAT"+String.valueOf(i)); //getting the CAT and loop it to get the CAT in firebase
-
-                            catList.add(catName); //add it to the catList
+                            String catName = doc.getString("CAT"+String.valueOf(i)+"_NAME"); //getting the CAT NAME and loop it to get the CAT NAME in firebase
+                            String catID = doc.getString("CAT"+String.valueOf(i)+"_ID"); //getting the CAT ID and loop it to get the CAT ID in firebase
+                            catList.add(new SubjectModel(catID,catName)); //add it to the catList and pass it to the SubjectModel
 
                             startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //start the loginActivity after fetching subjects data
                             finish();
