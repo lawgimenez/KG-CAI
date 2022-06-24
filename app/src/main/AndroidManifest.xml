@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KGCAI">
         <activity
+            android:name=".VideosActivity"
+            android:exported="true" />
+        <activity
             android:name=".QuizResultActivity"
             android:exported="true" />
         <activity

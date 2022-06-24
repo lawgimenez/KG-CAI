@@ -17,9 +17,14 @@
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_sets.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_subject.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/activity_video.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/activity_video_row.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/activity_videos.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/loading_progress_bar.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/row_video.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/sets_item_layout.xml" value="0.33" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/subj_item_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/video_row.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
