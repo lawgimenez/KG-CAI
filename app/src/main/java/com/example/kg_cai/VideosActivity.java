@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +25,8 @@ public class VideosActivity extends AppCompatActivity {
 
     private RecyclerView videosRv;
 
+    String picked;
+
     //function call, load  videos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +37,19 @@ public class VideosActivity extends AppCompatActivity {
 
         loadVideosFromFirebase();
 
+
+
     }
 
     private void loadVideosFromFirebase() {
+        Bundle extras = getIntent().getExtras();
+        picked = extras.getString("VideoFolder");
+
         //init arraylist
         videoArrayList = new ArrayList<>();
 
         //db reference
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Videos");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(picked);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -59,12 +67,10 @@ public class VideosActivity extends AppCompatActivity {
                 //set adapter to recyclerview
                 videosRv.setAdapter(adapterVideo);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
     }
 }
