@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -74,10 +75,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        if(firebaseAuth.getCurrentUser()!=null){ //if user is currently logged in it will go to main activity
-//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//            finish();
-//        }
+        if(firebaseAuth.getCurrentUser()!=null){ //if user is currently logged in it will go to main activity
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
 
     }
 
@@ -87,7 +88,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if(firebaseUser.isEmailVerified()){ //check if its verified
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }else{
+                        firebaseUser.sendEmailVerification();
+                        Toast.makeText(getApplicationContext(), "Check your email to verify your account.(check spam folder if not showing in inbox)", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
