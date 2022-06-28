@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText txtEmail, txtPassword, btnRegister;
+    private EditText txtEmail, txtPassword;
+    private TextView btnForgotPass;
     private Button btnLogin;
 
     private FirebaseAuth firebaseAuth;
@@ -36,8 +38,16 @@ public class LoginActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtLoginEmail);
         txtPassword = findViewById(R.id.txtLoginPass);
         btnLogin = findViewById(R.id.btnLogin);
+        btnForgotPass = findViewById(R.id.btnForgotPass);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        btnForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ResetUserPasswordActivity.class));
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,10 +74,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        if(firebaseAuth.getCurrentUser()!=null){ //if user is currently logged in it will go to main activity
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        }
+//        if(firebaseAuth.getCurrentUser()!=null){ //if user is currently logged in it will go to main activity
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//            finish();
+//        }
 
     }
 
