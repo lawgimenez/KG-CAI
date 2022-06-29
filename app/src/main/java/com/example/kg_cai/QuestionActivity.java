@@ -276,11 +276,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             //go to quiz result activity
 
             Intent intent = new Intent(QuestionActivity.this, QuizResultActivity.class);
-            intent.putExtra("SCORE", String.valueOf(score) + "/" + questionList.size());
+            intent.putExtra("SCORE", String.valueOf(score));
+            intent.putExtra("SCORE_OVER", String.valueOf(questionList.size()));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
 
-            //QuestionActivity.this.finish();
 
         }
     }

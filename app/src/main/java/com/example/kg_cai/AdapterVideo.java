@@ -97,20 +97,20 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>
                 switch (what){
                     case MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START:{
                         //rendering started
-                        holder.progressBar.setVisibility(View.VISIBLE);
+                        holder.progressBar.setVisibility(View.INVISIBLE);
                         return true;
                     }
                     case MediaPlayer.MEDIA_INFO_BUFFERING_START:{
                         //buffering started
 
-                        holder.progressBar.setVisibility(View.VISIBLE);
+                        holder.progressBar.setVisibility(View.INVISIBLE);
                         return true;
 
                     }
                     case MediaPlayer.MEDIA_INFO_BUFFERING_END:{
                         //buffering ended
 
-                        holder.progressBar.setVisibility(View.VISIBLE);
+                        holder.progressBar.setVisibility(View.INVISIBLE);
                         return true;
                     }
                 }
