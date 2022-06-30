@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
                if(item.getItemId() == R.id.itemLogout){
                    signOut();
                }
+               else if(item.getItemId() == R.id.itemProfile){
+                   profile();
+               }
                 return false;
             }
         });
@@ -58,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void profile() {
+        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
     }
 
     @Override
