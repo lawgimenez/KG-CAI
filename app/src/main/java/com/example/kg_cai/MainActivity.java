@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnStartQuiz, btnVideos;
+    private Button btnStartQuiz, btnVideos, btnLeaderBoards;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnStartQuiz = findViewById(R.id.btnStartQuiz_Main);
         btnVideos = findViewById(R.id.btnVideos_Main);
+        btnLeaderBoards = findViewById(R.id.btnLeaderboards);
 
         //click listener to logout
         mainToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -43,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
                    profile();
                }
                 return false;
+            }
+        });
+
+        btnLeaderBoards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LeaderboardsActivity.class));
             }
         });
 
@@ -75,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void signOut() {
+    private void signOut() { //method to log out the user
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signOut();
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));

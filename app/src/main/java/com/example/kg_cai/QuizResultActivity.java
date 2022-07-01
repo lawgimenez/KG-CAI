@@ -57,7 +57,7 @@ public class QuizResultActivity extends AppCompatActivity {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseReference.child("Score").child(firebaseUser.getUid()).child("result").addListenerForSingleValueEvent(new ValueEventListener() {
+                databaseReference.child("Score").child(firebaseUser.getUid()).child("score").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){

@@ -1,15 +1,19 @@
 package com.example.kg_cai;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
 public class MainVideosActivity extends AppCompatActivity {
 
     private LinearLayout btnNumeracy, btnLanguageLiteracy, btnFilipino, btnReadings;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,12 @@ public class MainVideosActivity extends AppCompatActivity {
         btnFilipino = findViewById(R.id.btnVideoFilipino);
         btnReadings = findViewById(R.id.btnVideoReading);
         btnLanguageLiteracy = findViewById(R.id.btnVideoLanguageLiteracy);
+
+        toolbar = findViewById(R.id.toolbar_mainVid);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Video Lesson");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         btnNumeracy.setOnClickListener(new View.OnClickListener() {
@@ -59,5 +69,12 @@ public class MainVideosActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button
+        if (item.getItemId() == android.R.id.home) {
+            MainVideosActivity.this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

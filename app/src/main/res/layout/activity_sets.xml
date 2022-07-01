@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SetsActivity">
+    tools:context=".SetsActivity"
+    android:background="@color/blue">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/setsToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_700"
+        android:background="@color/blue"
         app:title="Sets"
         app:titleTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +30,7 @@
         android:verticalSpacing="10dp"
         android:layout_gravity="center"
         android:columnWidth="100dp"
-        android:numColumns="1"
+        android:numColumns="3"
         />
 
 

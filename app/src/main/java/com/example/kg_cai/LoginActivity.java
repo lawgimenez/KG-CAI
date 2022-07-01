@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = txtPassword.getText().toString();
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    txtEmail.setError("Please Enter A Valid Email Address");
+                    txtEmail.setError("Please enter a valid email address");
                     txtEmail.requestFocus();
                     return;
                 }

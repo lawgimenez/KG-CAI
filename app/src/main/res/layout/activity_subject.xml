@@ -7,13 +7,14 @@
     tools:context=".SubjectActivity"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@color/blue"
     >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_subject"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_700"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,19 +23,20 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
     <GridView
-        android:background="@drawable/gradient_background"
         android:id="@+id/subj_gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:columnWidth="150dp"
          android:numColumns="2"
         android:horizontalSpacing="16dp"
-        android:verticalSpacing="16dp"
+        android:verticalSpacing="26dp"
         android:padding="10dp"
         android:clipToPadding="false"
         android:stretchMode="columnWidth"
+
         />
 
 </LinearLayout>
