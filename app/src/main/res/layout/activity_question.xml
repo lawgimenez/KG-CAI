@@ -11,7 +11,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#1DB954"
+        android:background="#0000FF"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,10 +21,11 @@
             android:id="@+id/tvQuesNumber_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#0000FF"
             android:gravity="center"
             android:padding="8dp"
             android:text="1/10"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -33,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:layout_margin="6dp"
-            android:background="#1DB954"
+            android:background="#0000FF"
             android:gravity="center"
             android:text="Question"
             android:textColor="@color/white"
@@ -45,28 +46,26 @@
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/img_help"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnOption1_question"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginBottom="25dp"
             android:background="@drawable/round_bg_white_blackcorner"
-            android:backgroundTint="#b4b4b4"
+            android:backgroundTint="#A9A9A9"
             android:elevation="3dp"
             android:padding="13dp"
             android:text="Answer 1" />
@@ -74,10 +73,10 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnOption2_question"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginBottom="25dp"
             android:background="@drawable/round_bg_white_blackcorner"
-            android:backgroundTint="#b4b4b4"
+            android:backgroundTint="#A9A9A9"
             android:elevation="3dp"
             android:padding="13dp"
             android:text="Answer 2" />
@@ -85,10 +84,10 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnOption3_question"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginBottom="25dp"
             android:background="@drawable/round_bg_white_blackcorner"
-            android:backgroundTint="#b4b4b4"
+            android:backgroundTint="#A9A9A9"
             android:elevation="3dp"
             android:padding="13dp"
             android:text="Answer 3" />
@@ -96,10 +95,9 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnOption4_question"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
+            android:layout_height="60dp"
             android:background="@drawable/round_bg_white_blackcorner"
-            android:backgroundTint="#b4b4b4"
+            android:backgroundTint="#A9A9A9"
             android:elevation="3dp"
             android:padding="13dp"
             android:text="Answer 4" />
@@ -110,29 +108,29 @@
         android:id="@+id/tvCountdown_question"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="32dp"
-        android:background="#0000FF"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/round_timer_bg"
         android:gravity="center"
         android:text="10"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ImageView
         android:id="@+id/img_help"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="24dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:background="@drawable/sets_bg"
-        android:backgroundTint="#E91E63"
-        android:padding="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        android:backgroundTint="#FC642D"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.812"
-        app:srcCompat="@drawable/play_logo" />
+        app:srcCompat="@drawable/hint_logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

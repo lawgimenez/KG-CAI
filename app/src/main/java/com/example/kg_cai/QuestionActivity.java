@@ -1,5 +1,6 @@
 package com.example.kg_cai;
 
+import static android.os.SystemClock.sleep;
 import static com.example.kg_cai.SetsActivity.setsIDs;
 import static com.example.kg_cai.SplashActivity.catList;
 import static com.example.kg_cai.SplashActivity.selected_cat_index;
@@ -53,6 +54,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private Dialog loadingDialog;
 
     private int quesNum,score;
+    int hint = 0;
 
     private CountDownTimer countDownTimer;
 
@@ -93,17 +95,21 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         getQuestionList();
 
+
+
+
         rotateLogoAnim();
 
         imgHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getHint();
             }
         });
 
     score = 0;
     }
+
 
     private void getQuestionList() {
         questionList.clear();
@@ -180,9 +186,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 String time = "10";
                 txtTimer.setText(String.valueOf(millisUntilFinished/1000)); //setText of what was the remaining time
                 if(millisUntilFinished < 10000){
-                    txtTimer.setBackgroundColor(Color.RED);
+                    txtTimer.setBackgroundResource(R.drawable.round_timer_bg_red);
                 }else{
-                    txtTimer.setBackgroundColor(Color.BLUE);
+                    txtTimer.setBackgroundResource(R.drawable.round_timer_bg);
                 }
             }
 
@@ -249,8 +255,37 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     break;
             }
         }
-
         changeQuestion(); //then change the question
+    }
+
+    private void getHint() {
+
+            switch (questionList.get(quesNum).getAnswer()) { //look into the selected button if its correct
+                case 1:
+                    btnOption1.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    sleep(1000); //sleep 1 second to load data and open login activity
+                    break;
+                case 2:
+                    btnOption2.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    sleep(1000); //sleep 1 second to load data and open login activity
+                    break;
+                case 3:
+                    btnOption3.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    sleep(1000); //sleep 1 second to load data and open login activity
+                    break;
+                case 4:
+                    btnOption4.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    sleep(1000); //sleep 1 second to load data and open login activity
+                    break;
+            }
+                changeQuestion();
+            hint++;
+
+        if(hint>1){
+            imgHelp.setVisibility(View.VISIBLE);
+        }else{
+            imgHelp.setVisibility(View.INVISIBLE);
+        }
     }
 
 
@@ -316,7 +351,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     }
 
                     if(viewNum != 0)
-                        ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#b4b4b4"))); //back to its original color after next question
+                        ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#B0B0B0"))); //back to its original color after next question
 
                     playAnim(view,1,viewNum);
                 }

@@ -8,12 +8,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -30,8 +32,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -132,9 +137,9 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
     private void updateUi(String name, Uri pickedImg, FirebaseUser currentUser) {
-        DatabaseReference reference;
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Score");
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Score");
+
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("user_image");
         final StorageReference imgFilePath = storageReference.child(pickedImg.getLastPathSegment());
@@ -153,9 +158,7 @@ public class ProfileActivity extends AppCompatActivity {
                         HashMap hashMap = new HashMap();
                         hashMap.put("name",name);
                         hashMap.put("image",uri.toString());
-                        hashMap.put("score",0);
-                        reference.child(currentUser.getUid()).setValue(hashMap)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        reference.child(currentUser.getUid()).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         Toast.makeText(getApplicationContext(), "Data Updated", Toast.LENGTH_SHORT).show();

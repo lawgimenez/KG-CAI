@@ -2,6 +2,7 @@ package com.example.kg_cai;
 
 import static com.example.kg_cai.SplashActivity.catList;
 import static com.example.kg_cai.SplashActivity.selected_cat_index;
+import static com.example.kg_cai.SubjGridAdapter.subjName;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,7 +57,7 @@ public class QuizResultActivity extends AppCompatActivity {
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //score will be stored in realtime db in specific subject name ex: Numeracy score.
                 databaseReference.child("Score").child(firebaseUser.getUid()).child("score").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -73,6 +74,8 @@ public class QuizResultActivity extends AppCompatActivity {
 
                     }
                 });
+
+
             }
         });
 

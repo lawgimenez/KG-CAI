@@ -17,6 +17,8 @@ public class SubjGridAdapter extends BaseAdapter {
     private List<SubjectModel> subjList;
     private Integer[] imageid;
 
+    public static String subjName;
+
     public SubjGridAdapter(List<SubjectModel> subjList, Integer[] imageid) {
         this.subjList = subjList;
         this.imageid = imageid;
@@ -57,8 +59,10 @@ public class SubjGridAdapter extends BaseAdapter {
             }
         });
 
+
         ((TextView) view.findViewById(R.id.subjName_itemLayout)).setText(subjList.get(position).getName());
         ((ImageView) view.findViewById(R.id.subjLogo_itemLayout)).setImageResource(imageid[position]);
+
 
 //        Random rand = new Random();
 //        int color = Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)); //gives you a random color for the background

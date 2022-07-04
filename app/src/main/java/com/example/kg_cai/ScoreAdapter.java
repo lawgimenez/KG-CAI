@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +42,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewAda
 
         holder.name.setText(scoreDataModel.getName());
         holder.score.setText("Score: "+String.valueOf(scoreDataModel.getScore()));
+
         holder.rank.setText(String.valueOf(i));
         Glide.with(context).load(scoreDataModel.getImage()).into(holder.scoreImg);
 
