@@ -43,7 +43,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewAda
         holder.name.setText(scoreDataModel.getName());
         holder.score.setText("Score: "+String.valueOf(scoreDataModel.getScore()));
 
-        holder.rank.setText(String.valueOf(i));
+        holder.rank.setText(String.valueOf(list.size()-position));
         Glide.with(context).load(scoreDataModel.getImage()).into(holder.scoreImg);
 
         i++; //increment the value of i

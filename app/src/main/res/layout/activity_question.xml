@@ -121,13 +121,13 @@
 
     <ImageView
         android:id="@+id/img_help"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:background="@drawable/sets_bg"
-        android:backgroundTint="#FC642D"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:padding="10dp"
+        android:background="@drawable/sets_bg"
+        android:backgroundTint="#9C27B0"
+        android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/hint_logo" />
