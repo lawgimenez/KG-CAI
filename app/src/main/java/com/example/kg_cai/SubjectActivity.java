@@ -10,8 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.GridView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.kg_cai.adapter.SubjGridAdapter;
 
 public class SubjectActivity extends AppCompatActivity {
 

@@ -3,8 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/alphabet_detail.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/alphabet_item.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/color_detail.xml" value="0.25729166666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/color_item.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/days_detail.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/days_item.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22135416666666666" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/number_detail.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/number_item.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/round_bg_white_blackcorner.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/shape_detail.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/shape_item.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/subject_border.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable/gradient_background.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.3828125" />
@@ -17,10 +27,15 @@
         <entry key="..\:/KGCAI/app/src/main/res/drawable/round_timer_bg.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable/round_timer_bg_red.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable/sets_bg.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/font/bubblegum_sans.xml" value="0.2713541666666667" />
+        <entry key="..\:/KGCAI/app/src/main/res/font/londrina_solid.xml" value="0.2713541666666667" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/activity_alphabet.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/activity_colors.xml" value="0.24114583333333334" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_leaderboards.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_main_videos.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/activity_numbers.xml" value="0.24114583333333334" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_numeracy_leaderboards.xml" value="0.20520833333333333" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_question.xml" value="0.25" />
@@ -28,11 +43,15 @@
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_reset_user_password.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_score_adapter.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_sets.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/activity_shapes.xml" value="0.24114583333333334" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/activity_sounds_main.xml" value="0.20520833333333333" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_subject.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_video.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_video_row.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_videos.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/activity_week.xml" value="0.24114583333333334" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/home.xml" value="0.24114583333333334" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/loading_progress_bar.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/row_video.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/score_item_list.xml" value="0.36666666666666664" />

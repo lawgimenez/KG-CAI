@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:background="#F8F7F5"
         >
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -36,7 +35,6 @@
                 android:text="Erick Resurreccion"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
                 />
             <TextView
                 android:id="@+id/scoreUserScore"

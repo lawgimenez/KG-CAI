@@ -2,12 +2,12 @@ package com.example.kg_cai;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.example.kg_cai.adapter.AdapterVideo;
+import com.example.kg_cai.helpers.ModelVideo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
