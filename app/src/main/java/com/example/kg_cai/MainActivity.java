@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //service for background music use to start
+        Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
+        startService(new Intent(getApplicationContext(), MyServiceMusic.class));
+
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.mainToolbar);
         mainToolbar.inflateMenu(R.menu.main_menu);
 
@@ -43,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
                }
                else if(item.getItemId() == R.id.itemProfile){
                    profile();
+               }else if(item.getItemId() == R.id.itemSettings){
+                   appSettings();
                }
                 return false;
             }
@@ -76,7 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SubjectActivity.class));
             }
         });
+    }
 
+    private void appSettings() {
+        startActivity(new Intent(getApplicationContext(), AppSettingsActivity.class));
     }
 
     private void profile() {
@@ -96,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button

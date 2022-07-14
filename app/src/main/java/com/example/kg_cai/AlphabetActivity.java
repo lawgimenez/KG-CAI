@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kg_cai.adapter.AlphabetAdapter;
 import com.example.kg_cai.helpers.AlphabetHelper;
+import com.example.kg_cai.helpers.RecyclerViewAction;
 
 import java.util.ArrayList;
 
 //import ideanity.oceans.kidslearning.adapter.AlphabetAdapter;
 //import ideanity.oceans.kidslearning.helpers.AlphabetHelper;
 
-public class AlphabetActivity extends AppCompatActivity implements RecyclerViewAction{
+public class AlphabetActivity extends AppCompatActivity implements RecyclerViewAction {
 
     RecyclerView recyclerViewAlphabet;
     RecyclerView.Adapter adapter;

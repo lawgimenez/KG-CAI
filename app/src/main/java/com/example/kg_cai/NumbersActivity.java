@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kg_cai.adapter.NumberAdapter;
 import com.example.kg_cai.helpers.NumberHelper;
+import com.example.kg_cai.helpers.RecyclerViewAction;
 
 import java.util.ArrayList;
 
 //import ideanity.oceans.kidslearning.adapter.NumberAdapter;
 //import ideanity.oceans.kidslearning.helpers.NumberHelper;
 
-public class NumbersActivity extends AppCompatActivity implements RecyclerViewAction{
+public class NumbersActivity extends AppCompatActivity implements RecyclerViewAction {
 
     RecyclerView recyclerViewNumber;
     RecyclerView.Adapter adapter;

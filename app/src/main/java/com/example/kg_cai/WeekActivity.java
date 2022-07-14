@@ -13,14 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kg_cai.adapter.WeekAdapter;
+import com.example.kg_cai.helpers.RecyclerViewAction;
 import com.example.kg_cai.helpers.WeekHelper;
 
 import java.util.ArrayList;
 
-//import ideanity.oceans.kidslearning.adapter.WeekAdapter;
-//import ideanity.oceans.kidslearning.helpers.WeekHelper;
-
-public class WeekActivity extends AppCompatActivity implements RecyclerViewAction{
+public class WeekActivity extends AppCompatActivity implements RecyclerViewAction {
 
     RecyclerView recyclerViewWeek;
     RecyclerView.Adapter adapter;

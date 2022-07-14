@@ -13,14 +13,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kg_cai.adapter.ShapeAdapter;
+import com.example.kg_cai.helpers.RecyclerViewAction;
 import com.example.kg_cai.helpers.ShapeHelper;
 
 import java.util.ArrayList;
 
-//import ideanity.oceans.kidslearning.adapter.ShapeAdapter;
-//import ideanity.oceans.kidslearning.helpers.ShapeHelper;
-
-public class ShapesActivity extends AppCompatActivity implements RecyclerViewAction{
+public class ShapesActivity extends AppCompatActivity implements RecyclerViewAction {
 
     RecyclerView recyclerViewShape;
     RecyclerView.Adapter adapter;
@@ -42,6 +40,7 @@ public class ShapesActivity extends AppCompatActivity implements RecyclerViewAct
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_shapes);
+
 
         recyclerViewShape = findViewById(R.id.recycler_shape);
         backMenu = findViewById(R.id.menu_nav);

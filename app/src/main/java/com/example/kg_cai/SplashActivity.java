@@ -45,13 +45,13 @@ public class SplashActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-//                try{
-//                    sleep(1000); //sleep 1 second to load data and open login activity
+                try{
+                    sleep(1050); //sleep 1 second to load data and open login activity
                     loadData();
 
-//                }catch (InterruptedException e){
-//                    e.printStackTrace();
-//                }
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
 
             }
         }).start();

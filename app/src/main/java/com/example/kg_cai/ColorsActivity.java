@@ -15,11 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kg_cai.adapter.ColorAdapter;
 import com.example.kg_cai.helpers.ColorHelper;
+import com.example.kg_cai.helpers.RecyclerViewAction;
 
 import java.util.ArrayList;
 
 
-public class ColorsActivity extends AppCompatActivity implements RecyclerViewAction{
+public class ColorsActivity extends AppCompatActivity implements RecyclerViewAction {
 
     RecyclerView recyclerViewColor;
     RecyclerView.Adapter adapter;

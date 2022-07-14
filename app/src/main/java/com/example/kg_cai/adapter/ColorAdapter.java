@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kg_cai.R;
-import com.example.kg_cai.RecyclerViewAction;
+import com.example.kg_cai.helpers.RecyclerViewAction;
 import com.example.kg_cai.helpers.ColorHelper;
 
 import java.util.ArrayList;

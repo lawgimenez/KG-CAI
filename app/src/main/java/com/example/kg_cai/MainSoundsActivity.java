@@ -33,13 +33,18 @@ public class MainSoundsActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //service for background music use to start
                 startActivity(new Intent(MainSoundsActivity.this, MainActivity.class));
+                finish();
             }
         });
 
         color.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //service for background music use to start
+                Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
+                stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
                 startActivity(new Intent(MainSoundsActivity.this, ColorsActivity.class));
             }
         });
@@ -47,6 +52,9 @@ public class MainSoundsActivity extends AppCompatActivity {
         number.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //service for background music use to start
+                Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
+                stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
                 startActivity(new Intent(MainSoundsActivity.this, NumbersActivity.class));
             }
         });
@@ -54,6 +62,9 @@ public class MainSoundsActivity extends AppCompatActivity {
         alphabet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //service for background music use to start
+                Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
+                stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
                 startActivity(new Intent(MainSoundsActivity.this, AlphabetActivity.class));
             }
         });
@@ -61,6 +72,9 @@ public class MainSoundsActivity extends AppCompatActivity {
         week.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //service for background music use to start
+                Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
+                stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
                 startActivity(new Intent(MainSoundsActivity.this, WeekActivity.class));
             }
         });
@@ -68,6 +82,9 @@ public class MainSoundsActivity extends AppCompatActivity {
         shape.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //service for background music use to start
+                Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
+                stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
                 startActivity(new Intent(MainSoundsActivity.this, ShapesActivity.class));
             }
         });
@@ -78,8 +95,11 @@ public class MainSoundsActivity extends AppCompatActivity {
                 startActivity(new Intent(MainSoundsActivity.this, MainVideosActivity.class));
             }
         });
-
-
+    }
+    @Override
+    public void onBackPressed() {
+        MainSoundsActivity.this.finish();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
 }
