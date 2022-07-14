@@ -2,9 +2,11 @@ package com.example.kg_cai;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +27,12 @@ public class ResetUserPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_user_password);
+
+        Toolbar toolbar = findViewById(R.id.toolbar_resetPass);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Video Lesson");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -67,5 +75,13 @@ public class ResetUserPasswordActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button
+        if (item.getItemId() == android.R.id.home) {
+            ResetUserPasswordActivity.this.finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

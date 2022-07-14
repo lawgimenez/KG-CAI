@@ -90,10 +90,18 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     private void signOut() { //method to log out the user
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signOut();
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button
+        if (item.getItemId() == android.R.id.home) {
+            MainActivity.this.finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

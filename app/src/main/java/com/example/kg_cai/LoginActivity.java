@@ -6,27 +6,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText txtEmail, txtPassword;
     private TextView btnForgotPass;
     private Button btnLogin;
+    private ProgressBar progressBar;
 
+    FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -34,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        progressBar = findViewById(R.id.loginProgressBar);
         btnLogin = findViewById(R.id.btnLogin);
 
         txtEmail = findViewById(R.id.txtLoginEmail);
@@ -42,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         btnForgotPass = findViewById(R.id.btnForgotPass);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         btnForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,26 +93,20 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void firebaseLogin(String email, String password) {
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-                    if(firebaseUser.isEmailVerified()){ //check if its verified
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    }else{
-                        firebaseUser.sendEmailVerification();
-                        Toast.makeText(getApplicationContext(), "Check your email to verify your account.(check spam folder if not showing in inbox)", Toast.LENGTH_LONG).show();
-                    }
-                }
+            public void onSuccess(AuthResult authResult) {
+                progressBar.setVisibility(View.VISIBLE);
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "No User Found", Toast.LENGTH_SHORT).show();
             }
         });
+        progressBar.setVisibility(View.INVISIBLE);
     }
+
 }
