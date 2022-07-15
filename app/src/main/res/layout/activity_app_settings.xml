@@ -19,25 +19,6 @@
         app:titleTextColor="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
-    <Button
-        android:id="@+id/btnMusicStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="start"
-        app:layout_constraintBottom_toTopOf="@+id/btnMusicStop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnMusicStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="stop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnMusicStart"
-        app:layout_constraintStart_toStartOf="@+id/btnMusicStart" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -64,13 +45,13 @@
             tools:layout_editor_absoluteX="32dp" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/switchMusic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="On"
             android:layout_gravity="right"
             android:textSize="20sp"
-
+            android:checked="true"
             app:layout_constraintStart_toEndOf="@+id/textView2"
             tools:layout_editor_absoluteY="106dp" />
     </LinearLayout>

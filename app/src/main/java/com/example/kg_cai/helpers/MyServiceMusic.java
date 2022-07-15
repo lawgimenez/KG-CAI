@@ -1,14 +1,14 @@
-package com.example.kg_cai;
+package com.example.kg_cai.helpers;
 
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import java.io.File;
+import com.example.kg_cai.R;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -35,19 +35,16 @@ public class MyServiceMusic extends Service {
         final int max = 4;
         final int random = new Random().nextInt((max - min) + 1) + min; //set a random number to randomly select a index in arraylist that have songs
 
-        Toast.makeText(getApplicationContext(), "service created", Toast.LENGTH_SHORT).show();
         mediaPlayer = MediaPlayer.create(getApplicationContext(), songs.get(random)); //play songs based on random number
         mediaPlayer.setLooping(false);
     }
 
     public void onStart(Intent intent, int startID){
-        Toast.makeText(getApplicationContext(), "Music started", Toast.LENGTH_SHORT).show();
         mediaPlayer.start();
     }
 
     @Override
     public void onDestroy() {
-        Toast.makeText(getApplicationContext(), "Music stopped", Toast.LENGTH_SHORT).show();
         mediaPlayer.stop();
         mediaPlayer.release();
     }

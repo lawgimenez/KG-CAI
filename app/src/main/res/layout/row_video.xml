@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="50dp"
         android:fontFamily="sans-serif-condensed"
         android:shadowColor="@color/black"
         android:shadowDx="1"
@@ -23,8 +24,7 @@
         android:shadowRadius="2"
         android:text="Title of the video"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        android:layout_marginBottom="50dp"/>
+        android:textSize="18sp" />
 
 
     <ProgressBar

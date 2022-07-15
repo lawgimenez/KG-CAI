@@ -70,7 +70,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MyServiceMusic"/>
+        <service android:name=".helpers.MyServiceMusic"/>
     </application>
 
 </manifest>
