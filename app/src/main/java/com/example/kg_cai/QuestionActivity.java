@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.example.kg_cai.helpers.Question;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -54,7 +55,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private Dialog loadingDialog;
 
     private int quesNum,score;
-    int hint = 0;
+    private int hint;
 
     private CountDownTimer countDownTimer;
 
@@ -93,11 +94,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         questionList = new ArrayList<>();
 
-        getQuestionList();
-
-
-
-
         rotateLogoAnim();
 
         imgHelp.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +102,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 getHint();
             }
         });
+
+        getQuestionList();
 
     score = 0;
     }
@@ -174,6 +172,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         txtQuesNumber.setText(String.valueOf(1)+"/"+String.valueOf(questionList.size())); //setting the question number feature
 
+
         startTimer();
 
         quesNum = 0;
@@ -203,7 +202,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-
         int selectedOption = 0;
 
         switch (v.getId()){
@@ -253,39 +251,43 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 case 4:
                     btnOption4.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     break;
+
+                default:
             }
         }
         changeQuestion(); //then change the question
     }
 
     private void getHint() {
-
-            switch (questionList.get(quesNum).getAnswer()) { //look into the selected button if its correct
+        hint++;
+        switch (questionList.get(quesNum).getAnswer()) { //look into the selected button if its correct
                 case 1:
                     btnOption1.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    sleep(1000); //sleep 1 second to load data and open login activity
+                    sleep(1200); //sleep 1 second to load data and open login activity
                     break;
                 case 2:
                     btnOption2.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    sleep(1000); //sleep 1 second to load data and open login activity
+                    sleep(1200); //sleep 1 second to load data and open login activity
                     break;
                 case 3:
                     btnOption3.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    sleep(1000); //sleep 1 second to load data and open login activity
+                    sleep(1200); //sleep 1 second to load data and open login activity
                     break;
                 case 4:
                     btnOption4.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    sleep(1000); //sleep 1 second to load data and open login activity
+                    sleep(1200); //sleep 1 second to load data and open login activity
                     break;
             }
-                changeQuestion();
-            hint++;
+        countDownTimer.cancel();
 
-        if(hint>1){
-            imgHelp.setVisibility(View.VISIBLE);
-        }else{
+        if(hint>=1){
+
             imgHelp.setVisibility(View.INVISIBLE);
+            imgHelp.setClickable(false);
         }
+
+        changeQuestion();
+
     }
 
 
@@ -303,7 +305,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
             txtQuesNumber.setText(String.valueOf(quesNum+1)+"/"+String.valueOf(questionList.size())); //setting up what number will be in the quiz
 
-            txtTimer.setText(String.valueOf(60)); //10 seconds timer
+
+            //txtTimer.setText(String.valueOf(60)); //10 seconds timer
             startTimer(); //start the timer again
 
         }else{
@@ -377,7 +380,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     private void rotateLogoAnim() {
 
-        rotateLogoAnim = AnimationUtils.loadAnimation(this, R.anim.help_logo_anim);
+        rotateLogoAnim = AnimationUtils.loadAnimation(this, R.anim.logoanim);
         imgHelp.startAnimation(rotateLogoAnim);
 
         

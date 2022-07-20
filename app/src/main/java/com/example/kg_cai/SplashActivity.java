@@ -12,8 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.kg_cai.helpers.SubjectModel;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,13 +45,13 @@ public class SplashActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-//                try{
-//                    sleep(1000); //sleep 1 second to load data and open login activity
+                try{
+                    sleep(1050); //sleep 1 second to load data and open login activity
                     loadData();
 
-//                }catch (InterruptedException e){
-//                    e.printStackTrace();
-//                }
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
 
             }
         }).start();

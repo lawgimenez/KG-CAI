@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KGCAI">
         <activity
+            android:name=".AppSettingsActivity"
+            android:exported="true" />
+        <activity
             android:name=".LeaderboardsActivity"
             android:exported="true" />
         <activity
@@ -48,6 +51,16 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
+            android:name=".MainSoundsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AlphabetActivity"
+            android:exported="true" />
+        <activity android:name=".ShapesActivity" />
+        <activity android:name=".WeekActivity" />
+        <activity android:name=".NumbersActivity" />
+        <activity android:name=".ColorsActivity" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -56,6 +69,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".MyServiceMusic"/>
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@ public class MainVideosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_videos);
 
+
         btnNumeracy = findViewById(R.id.btnVideoAdminNumeracy);
         btnFilipino = findViewById(R.id.btnVideoFilipino);
         btnReadings = findViewById(R.id.btnVideoReading);
@@ -68,6 +69,7 @@ public class MainVideosActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button

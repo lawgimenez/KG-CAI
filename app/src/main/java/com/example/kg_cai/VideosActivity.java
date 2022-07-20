@@ -2,12 +2,13 @@ package com.example.kg_cai;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.example.kg_cai.adapter.AdapterVideo;
+import com.example.kg_cai.helpers.ModelVideo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,11 +35,17 @@ public class VideosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videos);
 
+        //service for background music use to start
+        Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
+        stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
+
+        //service for background music use to stop
+        new Intent(getApplicationContext(), MyServiceMusic.class);
+        stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
+
         videosRv = findViewById(R.id.videoRv);
 
         loadVideosFromFirebase();
-
-
 
     }
 
@@ -74,4 +81,11 @@ public class VideosActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        VideosActivity.this.finish();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    }
+
 }

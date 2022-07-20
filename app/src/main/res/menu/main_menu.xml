@@ -7,10 +7,19 @@
         app:showAsAction="withText"
         />
 
+    <item android:id="@+id/itemSettings"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="Settings"
+        app:showAsAction="withText"
+        />
+
+
     <item android:id="@+id/itemLogout"
         android:icon="@drawable/ic_baseline_exit_to_app_24"
         android:title="Logout"
         app:showAsAction="withText"
         />
+
+
 
 </menu>

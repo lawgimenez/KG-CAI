@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnStartQuiz, btnVideos, btnLeaderBoards;
+    private Button btnStartQuiz, btnVideos, btnLeaderBoards, btnSounds;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -26,11 +26,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //service for background music use to start
+        Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
+        startService(new Intent(getApplicationContext(), MyServiceMusic.class));
+
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.mainToolbar);
         mainToolbar.inflateMenu(R.menu.main_menu);
 
         btnStartQuiz = findViewById(R.id.btnStartQuiz_Main);
         btnVideos = findViewById(R.id.btnVideos_Main);
+        btnSounds = findViewById(R.id.btnSounds_Main);
         btnLeaderBoards = findViewById(R.id.btnLeaderboards);
 
         //click listener to logout
@@ -42,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
                }
                else if(item.getItemId() == R.id.itemProfile){
                    profile();
+               }else if(item.getItemId() == R.id.itemSettings){
+                   appSettings();
                }
                 return false;
             }
@@ -51,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), LeaderboardsActivity.class));
+            }
+        });
+
+        btnSounds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainSoundsActivity.class));
             }
         });
 
@@ -68,7 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SubjectActivity.class));
             }
         });
+    }
 
+    private void appSettings() {
+        startActivity(new Intent(getApplicationContext(), AppSettingsActivity.class));
     }
 
     private void profile() {
@@ -82,10 +99,19 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     private void signOut() { //method to log out the user
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signOut();
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button
+        if (item.getItemId() == android.R.id.home) {
+            MainActivity.this.finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
