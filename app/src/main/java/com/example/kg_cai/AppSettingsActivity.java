@@ -22,7 +22,7 @@ public class AppSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_settings);
 
-        switchMusic = findViewById(R.id.switchMusic);
+        switchMusic = findViewById(R.id.musicSwitch);
 
         Toolbar toolbar = findViewById(R.id.toolbar_settings);
         setSupportActionBar(toolbar);

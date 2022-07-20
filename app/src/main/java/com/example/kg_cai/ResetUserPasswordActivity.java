@@ -15,11 +15,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetUserPasswordActivity extends AppCompatActivity {
 
-    private EditText txtEmail;
+    private TextInputEditText txtEmail;
     private Button btnResetPass;
 
     private FirebaseAuth firebaseAuth;
@@ -31,12 +32,11 @@ public class ResetUserPasswordActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_resetPass);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Video Lesson");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        txtEmail = findViewById(R.id.txtResetEmail);
+        txtEmail = findViewById(R.id.textEmailEditTxt);
         btnResetPass = findViewById(R.id.btnResetPass);
 
         btnResetPass.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +63,7 @@ public class ResetUserPasswordActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    //txtEmail.setText("");
+                    finish();
                     Toast.makeText(getApplicationContext(), "Check your email to reset your password", Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(getApplicationContext(), "Something went wrong, try again", Toast.LENGTH_SHORT).show();
@@ -85,3 +85,7 @@ public class ResetUserPasswordActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+
+
+

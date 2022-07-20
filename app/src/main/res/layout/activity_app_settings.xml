@@ -19,7 +19,6 @@
         app:titleTextColor="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +35,6 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:text="Background Music: "
             android:layout_gravity="left"
             android:textSize="20sp"
@@ -45,7 +43,7 @@
             tools:layout_editor_absoluteX="32dp" />
 
         <Switch
-            android:id="@+id/switchMusic"
+            android:id="@+id/musicSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="On"
@@ -58,3 +56,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

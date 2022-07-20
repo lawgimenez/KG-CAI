@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
-    private TextView txtName, txtEmail, btnChangePic;
+    private TextView txtName, txtEmail, btnChangePic, txtUserVerified;
     private CircleImageView imgProfile;
     private Button btnSaveChanges;
 
@@ -61,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar_profile);
 
+        txtUserVerified = findViewById(R.id.txtUserVerified);
         txtEmail = findViewById(R.id.txtProfileEmail);
         txtName = findViewById(R.id.txtProfileName);
         imgProfile = findViewById(R.id.imgProfile);
@@ -78,6 +79,12 @@ public class ProfileActivity extends AppCompatActivity {
         txtEmail.setText(firebaseUser.getEmail());
 
         Glide.with(ProfileActivity.this).load(firebaseUser.getPhotoUrl()).into(imgProfile);
+
+        if(firebaseUser.isEmailVerified()){
+            txtUserVerified.setVisibility(View.GONE);
+        }else{
+            txtUserVerified.setVisibility(View.VISIBLE);
+        }
 
         btnChangePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,11 +159,11 @@ public class ProfileActivity extends AppCompatActivity {
                         hashMap.put("name",name);
                         hashMap.put("image",uri.toString());
                         reference.child(currentUser.getUid()).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(getApplicationContext(), "Data Updated", Toast.LENGTH_SHORT).show();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(getApplicationContext(), "Data Updated", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -177,3 +184,5 @@ public class ProfileActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+
