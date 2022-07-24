@@ -25,7 +25,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.kg_cai.helpers.Question;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,13 +45,13 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseFirestore firestore;
     private int setNo;
 
-    private ImageView imgHelp;
+    private long backPressedTime;
 
-    private Toolbar quesToolbar;
+    private ImageView imgHelp;
 
     private List<Question> questionList; //from Question class
 
-    private Dialog loadingDialog;
+    private Dialog loadingDialog, instructionsDialog;
 
     private int quesNum,score;
     private int hint;
@@ -67,12 +66,42 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_question);
 
         firestore = FirebaseFirestore.getInstance();
-        
+
+        instructionsDialog = new Dialog(QuestionActivity.this);
+        instructionsDialog.setContentView(R.layout.instructions_dialog); //initialize the loading dialog
+        instructionsDialog.setCancelable(false);
+        instructionsDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        instructionsDialog.show();
+
+        Button btnOkay = instructionsDialog.findViewById(R.id.btnOkayInstructionsDialog);
+
+        btnOkay.setOnClickListener(new View.OnClickListener() { //this is for okay button in instructions dialog
+            @Override
+            public void onClick(View v) {
+                instructionsDialog.dismiss();
+                getQuestionList();
+            }
+        });
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Thread.sleep(10000); //sleep 10 second to show the instructions dialog then proceed into getQuestionsList method
+                    instructionsDialog.dismiss();
+                    getQuestionList();
+
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
+
         loadingDialog = new Dialog(QuestionActivity.this);
         loadingDialog.setContentView(R.layout.loading_progress_bar); //initialize the loading dialog
         loadingDialog.setCancelable(false);
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        loadingDialog.show();
 
         imgHelp = findViewById(R.id.img_help);
 
@@ -94,7 +123,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         questionList = new ArrayList<>();
 
-        rotateLogoAnim();
+        rotateHintAnim();
 
         imgHelp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,8 +131,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 getHint();
             }
         });
-
-        getQuestionList();
 
     score = 0;
     }
@@ -370,20 +397,32 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
+    }    private void rotateHintAnim() {
+
+        rotateLogoAnim = AnimationUtils.loadAnimation(this, R.anim.logoanim);
+        imgHelp.startAnimation(rotateLogoAnim);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
             countDownTimer.cancel();
-
+            finish();
     }
 
-    private void rotateLogoAnim() {
+        @Override
+        public void onBackPressed() {
+            if(backPressedTime + 2000 > System.currentTimeMillis()){ //2 seconds
+                Intent intent = new Intent(getApplicationContext(), QuizResultActivity.class);
+                intent.putExtra("SCORE", String.valueOf(score));
+                intent.putExtra("SCORE_OVER", String.valueOf(questionList.size()));
+                startActivity(intent);
+            }else{
+                Toast.makeText(getApplicationContext(), "Press back again to finish, Your score will be recorded", Toast.LENGTH_SHORT).show();
+            }
+            backPressedTime = System.currentTimeMillis();
+        }
 
-        rotateLogoAnim = AnimationUtils.loadAnimation(this, R.anim.logoanim);
-        imgHelp.startAnimation(rotateLogoAnim);
 
-        
-    }
 
 }

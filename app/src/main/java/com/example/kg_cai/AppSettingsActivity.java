@@ -8,41 +8,40 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.Switch;
+
+import com.example.kg_cai.helpers.MyServiceMusic;
 
 public class AppSettingsActivity extends AppCompatActivity {
 
-    private Button btnMusicStart, btnMusicStop;
     private Intent musicServiceIntent;
+    private Switch switchMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_settings);
 
+        switchMusic = findViewById(R.id.musicSwitch);
+
         Toolbar toolbar = findViewById(R.id.toolbar_settings);
-
-        btnMusicStart = findViewById(R.id.btnMusicStart);
-        btnMusicStop = findViewById(R.id.btnMusicStop);
-
-        musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        btnMusicStop.setOnClickListener(new View.OnClickListener() {
+        musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
+
+        switchMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
+                if(switchMusic.isChecked()){
+                    startService(new Intent(getApplicationContext(), MyServiceMusic.class));
+                }else{
+                    stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
+                }
             }
         });
 
-        btnMusicStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startService(new Intent(getApplicationContext(), MyServiceMusic.class));
-            }
-        });
+
     }
 
 

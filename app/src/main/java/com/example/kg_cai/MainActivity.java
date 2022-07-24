@@ -3,6 +3,9 @@ package com.example.kg_cai;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,14 +14,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import com.example.kg_cai.databinding.ActivityMainBinding;
+import com.example.kg_cai.helpers.MyServiceMusic;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnStartQuiz, btnVideos, btnLeaderBoards, btnSounds;
+    private Button btnStartQuiz, btnTextRecognition,btnLeaderBoards, btnText_Main, btnSound_Main,btnVideo_Main;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -26,53 +31,52 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //btnTextRecognition = findViewById(R.id.btnTextRecognition);
+        btnStartQuiz = findViewById(R.id.btnStartQuiz_Main);
+        btnLeaderBoards = findViewById(R.id.btnLeaderboards);
+        btnText_Main = findViewById(R.id.btnText_Main);
+        btnSound_Main = findViewById(R.id.btnSounds_Main);
+        btnVideo_Main = findViewById(R.id.btnVideos_Main);
+
         //service for background music use to start
-        Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
         startService(new Intent(getApplicationContext(), MyServiceMusic.class));
 
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.mainToolbar);
         mainToolbar.inflateMenu(R.menu.main_menu);
 
-        btnStartQuiz = findViewById(R.id.btnStartQuiz_Main);
-        btnVideos = findViewById(R.id.btnVideos_Main);
-        btnSounds = findViewById(R.id.btnSounds_Main);
-        btnLeaderBoards = findViewById(R.id.btnLeaderboards);
 
-        //click listener to logout
+        //click listener to profile,settings and logout
         mainToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                if(item.getItemId() == R.id.itemLogout){
-                   signOut();
+                   firebaseAuth = FirebaseAuth.getInstance();
+                   firebaseAuth.signOut();
+                   startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                   finish();
                }
                else if(item.getItemId() == R.id.itemProfile){
-                   profile();
+                   startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                }else if(item.getItemId() == R.id.itemSettings){
-                   appSettings();
+                   startActivity(new Intent(getApplicationContext(), AppSettingsActivity.class));
                }
                 return false;
             }
         });
 
+//
+//        btnTextRecognition.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), TextRecognition.class));
+//            }
+//        });
+
         btnLeaderBoards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), LeaderboardsActivity.class));
-            }
-        });
-
-        btnSounds.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MainSoundsActivity.class));
-            }
-        });
-
-
-        btnVideos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MainVideosActivity.class));
             }
         });
 
@@ -82,14 +86,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SubjectActivity.class));
             }
         });
-    }
 
-    private void appSettings() {
-        startActivity(new Intent(getApplicationContext(), AppSettingsActivity.class));
-    }
+        btnVideo_Main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainVideosActivity.class));
+            }
+        });
 
-    private void profile() {
-        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+        btnSound_Main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainSoundsActivity.class));
+            }
+        });
+
+        btnText_Main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainTextActivity.class));
+            }
+        });
     }
 
     @Override
@@ -97,13 +114,6 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
-    }
-
-    private void signOut() { //method to log out the user
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signOut();
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
     }
 
 

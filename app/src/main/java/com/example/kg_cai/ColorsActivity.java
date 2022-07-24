@@ -1,11 +1,13 @@
 package com.example.kg_cai;
 
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ public class ColorsActivity extends AppCompatActivity implements RecyclerViewAct
 
     RecyclerView recyclerViewColor;
     RecyclerView.Adapter adapter;
+    private RelativeLayout colorBg;
     private GradientDrawable red, green, purple, blue, pink, yellow, orange, brown, black, white;
 
     //Media Creation
@@ -50,6 +53,7 @@ public class ColorsActivity extends AppCompatActivity implements RecyclerViewAct
         recyclerViewColor = findViewById(R.id.recycler_color);
         backMenu = findViewById(R.id.menu_nav);
         colorName = findViewById(R.id.color_name);
+        colorBg = findViewById(R.id.colorBg);
 
         mpblue = MediaPlayer.create(ColorsActivity.this, R.raw.blue);
         mpgreen= MediaPlayer.create(ColorsActivity.this, R.raw.green);
@@ -100,9 +104,10 @@ public class ColorsActivity extends AppCompatActivity implements RecyclerViewAct
 
         adapter = new ColorAdapter(questionLocations, this, this);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
         recyclerViewColor.setLayoutManager(gridLayoutManager);
         recyclerViewColor.setAdapter(adapter);
+        colorBg.setBackgroundColor(Color.TRANSPARENT);
 
     }
 
@@ -112,42 +117,54 @@ public class ColorsActivity extends AppCompatActivity implements RecyclerViewAct
             switch (clickedItemPosition) {
                 case 0:
                     mpred.start();
+                    colorBg.setBackgroundColor(Color.RED);
                     colorName.setText("Red");
                     break;
                 case 1:
                     mpgreen.start();
+                    colorBg.setBackgroundColor(Color.GREEN);
                     colorName.setText("Green");
                     break;
                 case 2:
                     mppurple.start();
+                    colorBg.setBackgroundColor(Color.parseColor("#800080"));
                     colorName.setText("Purple");
                     break;
                 case 3:
                     mpblue.start();
+                    colorBg.setBackgroundColor(Color.BLUE);
                     colorName.setText("Blue");
                     break;
                 case 4:
                     mppink.start();
+                    colorBg.setBackgroundColor(Color.parseColor("#FFC0CB"));
                     colorName.setText("Pink");
                     break;
                 case 5:
                     mpyellow.start();
+                    colorBg.setBackgroundColor(Color.YELLOW);
                     colorName.setText("Yellow");
                     break;
                 case 6:
                     mporange.start();
+                    colorBg.setBackgroundColor(Color.parseColor("#FFA500"));
                     colorName.setText("Orange");
                     break;
                 case 7:
                     mpbrown.start();
+                    colorBg.setBackgroundColor(Color.parseColor("#A52A2A"));
                     colorName.setText("Brown");
                     break;
                 case 8:
                     mpblack.start();
+                    colorBg.setBackgroundColor(Color.BLACK);
+                    colorName.setTextColor(Color.WHITE);
                     colorName.setText("Black");
                     break;
                 case 9:
                     mpwhite.start();
+                    colorBg.setBackgroundColor(Color.WHITE);
+                    colorName.setTextColor(Color.BLACK);
                     colorName.setText("White");
                     break;
                 default:

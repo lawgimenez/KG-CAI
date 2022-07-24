@@ -49,10 +49,10 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:text="1"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:layout_marginLeft="-50dp"
             android:gravity="center"
-            android:background="@color/blue"
+            android:background="#FFB900"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_gravity="center_vertical"/>

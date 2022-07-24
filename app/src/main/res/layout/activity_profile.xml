@@ -19,27 +19,61 @@
         app:titleTextColor="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgProfile"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="60dp"
-        android:scaleType="centerCrop"
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout4"
+        android:layout_width="200dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="32dp"
+        android:background="#F8F7F5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_profile"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/txtUserVerified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User is not yet email verified"
+            android:textColor="#E91E1E"
+            android:padding="2dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="116dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/btnChangeProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:padding="5dp"
+            android:text="Change Profile Picture"
+            android:textColor="@color/blue"
+            app:layout_constraintEnd_toEndOf="@+id/imgProfile"
+            app:layout_constraintStart_toStartOf="@+id/imgProfile"
+            app:layout_constraintTop_toBottomOf="@+id/imgProfile"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="32dp"
         android:text="Name:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnChangeProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
     <TextView
         android:id="@+id/txtProfileName"
@@ -49,7 +83,6 @@
         android:text="TextView"
         android:textSize="20sp"
         android:textStyle="bold"
-
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -78,22 +111,13 @@
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <TextView
-        android:id="@+id/btnChangeProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:padding="5dp"
-        android:text="Change Profile Picture"
-        android:textColor="@color/blue"
-        app:layout_constraintEnd_toEndOf="@+id/imgProfile"
-        app:layout_constraintStart_toStartOf="@+id/imgProfile"
-        app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
 
     <Button
         android:id="@+id/btnSaveChanges"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="100dp"
         android:text="Save Changes"
         android:visibility="invisible"
@@ -103,3 +127,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

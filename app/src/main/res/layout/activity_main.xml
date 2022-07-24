@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/blue"
+    android:background="@drawable/gradient_background"
     >
 
     <androidx.appcompat.widget.Toolbar
@@ -43,7 +43,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Let's watch!"
+        android:text="Watch and learn"
         android:textColor="#fff"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -61,17 +61,16 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/color_item"
+        android:fontFamily="@font/bubblegum_sans"
         android:text="Leaderboards"
         android:textColor="#fff"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:fontFamily="@font/bubblegum_sans"
-        app:layout_constraintBottom_toTopOf="@+id/btnSounds_Main"
+        app:layout_constraintBottom_toTopOf="@+id/btnText_Main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/color_item"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSounds_Main"
@@ -80,7 +79,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Let's hear it!"
+        android:text="Hear the sound"
         android:textColor="#fff"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -90,6 +89,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/number_item"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnText_Main"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/days_item"
+        android:fontFamily="@font/bubblegum_sans"
+        android:text="Let's Read!"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnSounds_Main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

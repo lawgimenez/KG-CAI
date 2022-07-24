@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtEmail, txtPassword;
     private TextView btnForgotPass;
     private Button btnLogin;
-    private ProgressBar progressBar;
+
 
     FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        progressBar = findViewById(R.id.loginProgressBar);
         btnLogin = findViewById(R.id.btnLogin);
 
         txtEmail = findViewById(R.id.txtLoginEmail);
@@ -96,7 +95,6 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                progressBar.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
@@ -106,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "No User Found", Toast.LENGTH_SHORT).show();
             }
         });
-        progressBar.setVisibility(View.INVISIBLE);
     }
 
 }
