@@ -9,9 +9,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:background="@drawable/shape_detail"
-        android:padding="20dp">
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/menu_nav"
@@ -27,14 +27,15 @@
 
             <TextView
                 android:id="@+id/shape_number"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/londrina_solid"
                 android:text="Shapes"
+                android:gravity="center"
                 android:textAllCaps="true"
                 android:textColor="#fff"
-                android:textSize="55sp"
+                android:textSize="80sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

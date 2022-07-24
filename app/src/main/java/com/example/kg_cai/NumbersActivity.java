@@ -18,9 +18,6 @@ import com.example.kg_cai.helpers.RecyclerViewAction;
 
 import java.util.ArrayList;
 
-//import ideanity.oceans.kidslearning.adapter.NumberAdapter;
-//import ideanity.oceans.kidslearning.helpers.NumberHelper;
-
 public class NumbersActivity extends AppCompatActivity implements RecyclerViewAction {
 
     RecyclerView recyclerViewNumber;
@@ -116,7 +113,7 @@ public class NumbersActivity extends AppCompatActivity implements RecyclerViewAc
 
         adapter = new NumberAdapter(questionLocations, this, this);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recyclerViewNumber.setLayoutManager(gridLayoutManager);
         recyclerViewNumber.setAdapter(adapter);
     }

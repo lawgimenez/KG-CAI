@@ -8,8 +8,9 @@
     tools:context=".ColorsActivity">
 
     <RelativeLayout
+        android:id="@+id/colorBg"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:background="@drawable/color_detail"
         android:padding="20dp">
 
@@ -34,7 +35,7 @@
                 android:text="COLOR"
                 android:textAllCaps="true"
                 android:textColor="#fff"
-                android:textSize="55sp"
+                android:textSize="100sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

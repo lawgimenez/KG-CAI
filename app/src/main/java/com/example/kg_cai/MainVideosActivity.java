@@ -8,30 +8,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class MainVideosActivity extends AppCompatActivity {
 
-    private LinearLayout btnNumeracy, btnLanguageLiteracy, btnFilipino, btnReadings;
-    private Toolbar toolbar;
+    private RelativeLayout btnNumeracy, btnLanguageLiteracy, btnFilipino, btnReadings;
+    private Button btnQuiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_videos);
 
-
         btnNumeracy = findViewById(R.id.btnVideoAdminNumeracy);
         btnFilipino = findViewById(R.id.btnVideoFilipino);
         btnReadings = findViewById(R.id.btnVideoReading);
+        btnQuiz = findViewById(R.id.btnQuiz);
         btnLanguageLiteracy = findViewById(R.id.btnVideoLanguageLiteracy);
-
-        toolbar = findViewById(R.id.toolbar_mainVid);
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Video Lesson");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         btnNumeracy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +34,13 @@ public class MainVideosActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), VideosActivity.class);
                 intent.putExtra("VideoFolder", "Numeracy_Videos");
                 startActivity(intent);
+            }
+        });
+
+        btnQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SubjectActivity.class));
             }
         });
 

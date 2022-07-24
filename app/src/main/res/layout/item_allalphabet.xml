@@ -14,13 +14,12 @@
         android:layout_columnWeight="1"
         app:cardElevation="6dp"
         app:cardCornerRadius="12dp"
-        android:layout_margin="12dp">
+        android:layout_margin="8dp">
 
         <LinearLayout
             android:id="@+id/linear_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:gravity="center"
             android:orientation="vertical">
 

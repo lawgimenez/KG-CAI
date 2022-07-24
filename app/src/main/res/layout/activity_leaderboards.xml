@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LeaderboardsActivity"
-    android:background="#F8F7F5">
+    android:background="@drawable/gradient_background">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_leaderboards"
@@ -24,6 +24,7 @@
         android:id="@+id/leaderboardRv"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

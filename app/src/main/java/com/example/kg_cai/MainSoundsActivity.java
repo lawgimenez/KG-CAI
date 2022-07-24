@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -12,12 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kg_cai.helpers.MyServiceMusic;
 
-
 public class MainSoundsActivity extends AppCompatActivity {
 
     RelativeLayout color, number, alphabet, week, shape;
-    ImageView backButton;
-    LinearLayout video;
+    Button btnSoundsMiniGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +29,7 @@ public class MainSoundsActivity extends AppCompatActivity {
         alphabet = findViewById(R.id.alphabet);
         week = findViewById(R.id.week);
         shape = findViewById(R.id.shape);
-        video = findViewById(R.id.btnvideo);
-        backButton = findViewById(R.id.btnSoundsBack);
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //service for background music use to start
-                startActivity(new Intent(MainSoundsActivity.this, MainActivity.class));
-                finish();
-            }
-        });
+        btnSoundsMiniGame = findViewById(R.id.btnSoundsMiniGame);
 
         color.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,10 +81,10 @@ public class MainSoundsActivity extends AppCompatActivity {
             }
         });
 
-        video.setOnClickListener(new View.OnClickListener() {
+        btnSoundsMiniGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainSoundsActivity.this, MainVideosActivity.class));
+                startActivity(new Intent(MainSoundsActivity.this, TextRecognition.class));
             }
         });
     }

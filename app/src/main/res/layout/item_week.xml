@@ -20,7 +20,6 @@
             android:id="@+id/linear_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -38,7 +37,7 @@
                     android:gravity="center"
                     android:text="Sunday"
                     android:textColor="#fff000"
-                    android:textSize="55sp"
+                    android:textSize="65sp"
                     android:textStyle="bold" />
 
             </LinearLayout>

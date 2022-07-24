@@ -136,7 +136,7 @@ public class AlphabetActivity extends AppCompatActivity implements RecyclerViewA
 
         adapter = new AlphabetAdapter(questionLocations, this, this);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recyclerViewAlphabet.setLayoutManager(gridLayoutManager);
         recyclerViewAlphabet.setAdapter(adapter);
     }
