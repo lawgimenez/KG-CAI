@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KGCAI">
         <activity
+            android:name=".ReadActivity"
+            android:exported="true" />
+        <activity
             android:name=".TextRecognition"
             android:exported="true" />
         <activity
@@ -71,6 +74,7 @@
             <meta-data
                 android:name="com.google.firebase.ml.vision.DEPENDENCIES"
                 android:value="ocr" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -25,12 +25,12 @@
             android:letterSpacing="0.03"
             android:text="Listen to \nLearn!"
             android:textColor="#fff"
-            android:textSize="40sp"
+            android:textSize="50sp"
             android:textStyle="bold" />
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="170dp"
+            android:layout_height="200dp"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="5dp"
             android:src="@drawable/listen_pic" />
@@ -41,7 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        android:background="#008000"
+        android:background="@drawable/round_bg_white"
+        android:backgroundTint="#008000"
         android:layout_margin="2dp"
         >
 
@@ -119,7 +120,7 @@
                 android:id="@+id/number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="12dp">
 
                 <ImageView
                     android:layout_width="380dp"
@@ -147,7 +148,7 @@
                 android:id="@+id/alphabet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="12dp">
 
                 <ImageView
                     android:layout_width="380dp"
@@ -175,14 +176,14 @@
                 android:id="@+id/week"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="12dp">
 
                 <ImageView
                     android:layout_width="380dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/days_item"
+                    android:layout_marginLeft="18dp"
                     android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp" />
+                    android:background="@drawable/days_item" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -204,7 +205,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="12dp">
 
                 <ImageView
                     android:layout_width="380dp"

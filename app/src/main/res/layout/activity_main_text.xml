@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainTextActivity"
-
+    android:background="@drawable/primary_background"
     >
 
     <FrameLayout
@@ -60,7 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none"
-            android:background="#0000FF"
+            android:background="@drawable/round_bg_white"
+            android:backgroundTint="@color/purple_700"
             android:layout_margin="2dp"
             >
 
@@ -139,7 +140,7 @@
                     android:id="@+id/btnNumeracyText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="12dp">
 
                     <ImageView
                         android:layout_width="380dp"
@@ -167,7 +168,7 @@
                     android:id="@+id/btnFilipinoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="12dp">
 
                     <ImageView
                         android:layout_width="380dp"
@@ -195,7 +196,7 @@
                     android:id="@+id/btnReadingsText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginBottom="10dp">
 
                     <ImageView

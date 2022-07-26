@@ -6,30 +6,30 @@ import static com.example.kg_cai.SplashActivity.selected_cat_index;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.kg_cai.adapter.SetsAdapter;
-import com.google.android.gms.tasks.OnFailureListener;
+import com.example.kg_cai.helpers.SetsModelClass;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SetsActivity extends AppCompatActivity {
 
     private Toolbar setsToolbar;
-    private GridView setsGridView;
+    private RecyclerView setsRecyclerView;
     private FirebaseFirestore firestore;
-    private Dialog loadingDialog;
 
+    public static List<SetsModelClass> setsList = new ArrayList<SetsModelClass>();
     public static List<String> setsIDs = new ArrayList<>();
 
     @Override
@@ -38,14 +38,7 @@ public class SetsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sets);
 
         setsToolbar = findViewById(R.id.setsToolbar);
-        setsGridView = findViewById(R.id.setsGridView);
-
-        loadingDialog = new Dialog(SetsActivity.this);
-        loadingDialog.setContentView(R.layout.loading_progress_bar); //initialize the loading dialog
-        loadingDialog.setCancelable(false);
-        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        loadingDialog.show();
-
+        setsRecyclerView = findViewById(R.id.setsRecyclerView);
 
         setSupportActionBar(setsToolbar);
         getSupportActionBar().setTitle(catList.get(selected_cat_index).getName());
@@ -57,38 +50,36 @@ public class SetsActivity extends AppCompatActivity {
 
     }
 
-    private void loadSets() {
 
-        setsIDs.clear();
+    private void loadSets() {
+        setsList.clear(); //Clear the arraylist of the sets
 
         firestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
+            public void onSuccess(DocumentSnapshot doc) {
+                if (doc.exists()) {
+                    long noOfSets = (long) doc.get("SETS");
 
-                long noOfSets = (long)documentSnapshot.get("SETS");
+                    for (int i = 1; i <= noOfSets; i++) {
+                        String setName = doc.getString("SET" + String.valueOf(i) + "_NAME"); //getting the SETS NAME and loop it to get the CAT_NAME in firebase
+                        String setID = doc.getString("SET" + String.valueOf(i) + "_ID"); //getting the SETS ID and loop it to get the CAT_ID in firebase
 
-                for(int i=1; i <= noOfSets; i++)
-                {
-                    setsIDs.add(documentSnapshot.getString("SET" + String.valueOf(i) + "_ID"));
-                }
+//                        Log.d("SET NAME: ", setName);
+//                        Log.d("SET ID: ", setID);
 
-                SetsAdapter adapter = new SetsAdapter(setsIDs.size());
+                        setsList.add(new SetsModelClass(setID, setName, "0", "1"));
+                        setsIDs.add(doc.getString("SET" + String.valueOf(i) + "_ID"));
 
-                setsGridView.setAdapter(adapter);
 
-                loadingDialog.dismiss();
-
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(SetsActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-                        loadingDialog.dismiss();
                     }
-                });
-        }
+
+                    SetsAdapter adapter = new SetsAdapter(setsList);
+                    setsRecyclerView.setAdapter(adapter);
+                }
+            }
+        });
+    }
 
 
     @Override
