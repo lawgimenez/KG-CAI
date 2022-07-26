@@ -1,67 +1,76 @@
 package com.example.kg_cai.adapter;
 
+import static com.example.kg_cai.SetsActivity.setsList;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.kg_cai.QuestionActivity;
 import com.example.kg_cai.R;
+import com.example.kg_cai.helpers.SetsModelClass;
+import java.util.List;
 
-public class SetsAdapter extends BaseAdapter {
+public class SetsAdapter extends RecyclerView.Adapter<SetsAdapter.ViewHolder> {
 
-    private String setsName;
-    private int numOfSets;
+    private List<SetsModelClass> sets_list;
 
-    public SetsAdapter(String setsName, int numOfSets) {
-        this.setsName = setsName;
-        this.numOfSets = numOfSets;
+    public SetsAdapter(List<SetsModelClass> sets_list) {
+
+        this.sets_list = sets_list;
     }
 
-    public SetsAdapter(int numOfSets) {
-        this.numOfSets = numOfSets;
+    @NonNull
+    @Override
+    public SetsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.sets_item_layout,viewGroup,false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public int getCount() {
-        return numOfSets;
+    public void onBindViewHolder(@NonNull SetsAdapter.ViewHolder holder, int position) {
+        String title = sets_list.get(position).getName();
+        holder.setData(title,position, title,this);
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public int getItemCount() {
+        return setsList.size();
     }
 
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+        private TextView setName;
 
-        View view;
-        if(convertView==null){
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sets_item_layout,parent,false);
-        }else{
-            view = convertView;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            setName = itemView.findViewById(R.id.tvSetsName);
+
         }
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(parent.getContext(), QuestionActivity.class); //question activity will start after clicking one set
-                intent.putExtra("SETNO", position);
-                parent.getContext().startActivity(intent);
-            }
-        });
+        private void setData(String title, final int pos, final String setID, final SetsAdapter adapter)
+        {
+            setName.setText(title);
 
 
-        ((TextView) view.findViewById(R.id.txtSetNumber)).setText(String.valueOf(position+1));
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(itemView.getContext(), QuestionActivity.class); //question activity will start after clicking one set
+                    intent.putExtra("SETNO", pos);
+                    itemView.getContext().startActivity(intent);
 
 
-        return view;
+                }
+            });
+
+
+        }
     }
 }
