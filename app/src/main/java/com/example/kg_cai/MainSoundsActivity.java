@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,7 +82,7 @@ public class MainSoundsActivity extends AppCompatActivity {
         btnSoundsMiniGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainSoundsActivity.this, TextRecognition.class));
+                startActivity(new Intent(MainSoundsActivity.this, TextRecognitionActivity.class));
             }
         });
     }

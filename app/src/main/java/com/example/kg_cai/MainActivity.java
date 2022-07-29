@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 //        btnTextRecognition.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(), TextRecognition.class));
+//                startActivity(new Intent(getApplicationContext(), TextRecognitionActivity.class));
 //            }
 //        });
 

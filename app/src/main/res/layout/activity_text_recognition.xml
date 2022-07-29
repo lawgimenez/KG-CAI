@@ -4,59 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TextRecognition">
+    tools:context=".TextRecognitionActivity"
+    android:background="@color/blue">
 
-    <ImageView
-        android:id="@+id/imgTextRecog"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/textRecogRv"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@color/black"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/captureTextImg"
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_weight="1"
-        android:text="Capture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgTextRecog" />
+        android:layout_margin="5dp"
+        android:background="@drawable/round_bg_white"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="5dp">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/scanTextImg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_weight="1"
-        android:text="Detect Image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/captureTextImg" />
+        <ImageView
+            android:id="@+id/imgTextRecog"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/captureTextImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-30dp"
+            android:backgroundTint="#03A9F4"
+            android:clickable="true"
+            android:padding="3dp"
+            android:src="@drawable/ic_baseline_camera_alt_24"
+            app:fabCustomSize="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgTextRecog"
+            app:maxImageSize="40dp" />
 
-    <TextView
-        android:id="@+id/txtScanText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        android:maxLines="7"
-        app:layout_constraintEnd_toEndOf="@+id/scanTextImg"
-        app:layout_constraintStart_toStartOf="@+id/scanTextImg"
-        app:layout_constraintTop_toBottomOf="@+id/scanTextImg" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/scanTextImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="32dp"
+            android:layout_weight="1"
+            android:background="@color/blue"
+            android:text="Scan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/captureTextImg" />
+
+        <TextView
+            android:id="@+id/txtScanText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
+            android:maxLines="7"
+            android:text="TextView"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/scanTextImg"
+            app:layout_constraintStart_toStartOf="@+id/scanTextImg"
+            app:layout_constraintTop_toBottomOf="@+id/scanTextImg" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

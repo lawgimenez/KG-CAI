@@ -43,7 +43,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private TextView txtTimer, txtQuestion, txtQuesNumber;
     private Button btnOption1, btnOption2, btnOption3, btnOption4;
     private FirebaseFirestore firestore;
-    private int setNo;
+    public static int setNo;
 
     private long backPressedTime;
 
@@ -339,7 +339,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         }else{
             //if theres no question left
             //go to quiz result activity
-
+            QuestionActivity.this.finish();
             Intent intent = new Intent(QuestionActivity.this, QuizResultActivity.class);
             intent.putExtra("SCORE", String.valueOf(score));
             intent.putExtra("SCORE_OVER", String.valueOf(questionList.size()));

@@ -17,7 +17,7 @@
             android:name=".ReadActivity"
             android:exported="true" />
         <activity
-            android:name=".TextRecognition"
+            android:name=".TextRecognitionActivity"
             android:exported="true" />
         <activity
             android:name=".MainTextActivity"
