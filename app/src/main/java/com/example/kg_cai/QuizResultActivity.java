@@ -4,6 +4,7 @@ import static com.example.kg_cai.QuestionActivity.setNo;
 import static com.example.kg_cai.SetsActivity.setsIDs;
 import static com.example.kg_cai.SplashActivity.catList;
 import static com.example.kg_cai.SplashActivity.selected_cat_index;
+import static com.example.kg_cai.adapter.SetsAdapter.setTitle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,7 +54,7 @@ public class QuizResultActivity extends AppCompatActivity {
 
         tvScore.setText(score + "/" + over);
 
-        databaseReference.child("Score").child(firebaseUser.getUid()).child(catList.get(selected_cat_index).getName()+"Sets").child("Set"+setsIDs.get(setNo)).child("score")
+        databaseReference.child("Score").child(firebaseUser.getUid()).child(catList.get(selected_cat_index).getName()+"Sets").child(setTitle).child("score")
                 .setValue(score)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -69,8 +70,25 @@ public class QuizResultActivity extends AppCompatActivity {
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { //score will be stored in realtime db in specific subject name ex: Numeracy score.
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                QuizResultActivity.this.finish();
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                QuizResultActivity.this.finish();
+                databaseReference.child("Score").child(firebaseUser.getUid()).child("Score")
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+                                    modified_score += Integer.parseInt(snapshot.getValue().toString());
+                                }
+                                snapshot.getRef().setValue(modified_score);
+                                QuizResultActivity.this.finish();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
             }
         });
 

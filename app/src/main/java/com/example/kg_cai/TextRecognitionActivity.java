@@ -55,7 +55,7 @@ public class TextRecognitionActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     List<TextRecogModel> list;
 
-    int modified_score_textRecog;
+    int modified_score_textRecog = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +118,8 @@ public class TextRecognitionActivity extends AppCompatActivity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            btnScan.setVisibility(View.VISIBLE);
+            txtScanText.setVisibility(View.VISIBLE);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -163,7 +165,7 @@ public class TextRecognitionActivity extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),correctAns + correctAnsText, Toast.LENGTH_SHORT).show();
             }
                     if(correctAnsText.equals(correctAns)){
-                    databaseReference.child("TextRecognition").child(firebaseUser.getUid()).child("score").addListenerForSingleValueEvent(new ValueEventListener() {
+                        FirebaseDatabase.getInstance().getReference().child("TextRecognitionScore").child(firebaseUser.getUid()).child("score").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.exists()){

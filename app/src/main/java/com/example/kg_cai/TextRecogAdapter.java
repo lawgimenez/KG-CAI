@@ -44,12 +44,8 @@ public class TextRecogAdapter extends RecyclerView.Adapter<TextRecogAdapter.Text
                 .load((textRecogModel.getImg())) // Uri of the picture
             .into(holder.imgInstruction);
 
-        holder.txtInstruction.setText("Instructions:" + textRecogModel.getInstructions());
+        holder.txtInstruction.setText("Instructions: " + textRecogModel.getInstructions());
         holder.txtCorrectAns.setText(textRecogModel.getCorrectAns());
-
-        Intent intent = new Intent();
-       correctAns = textRecogModel.getCorrectAns();
-//        context.startActivity(new Intent(context.getApplicationContext(), TextRecognitionActivity.class));
 
     }
 

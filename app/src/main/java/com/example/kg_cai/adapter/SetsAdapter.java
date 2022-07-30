@@ -15,7 +15,7 @@ import com.example.kg_cai.helpers.SetsModelClass;
 import java.util.List;
 
 public class SetsAdapter extends RecyclerView.Adapter<SetsAdapter.ViewHolder> {
-
+    public static String setTitle;
     private List<SetsModelClass> sets_list;
 
     public SetsAdapter(List<SetsModelClass> sets_list) {
@@ -32,8 +32,8 @@ public class SetsAdapter extends RecyclerView.Adapter<SetsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SetsAdapter.ViewHolder holder, int position) {
-        String title = sets_list.get(position).getName();
-        holder.setData(title,position, title,this);
+        setTitle = sets_list.get(position).getName();
+        holder.setData(setTitle,position, setTitle,this);
     }
 
     @Override
