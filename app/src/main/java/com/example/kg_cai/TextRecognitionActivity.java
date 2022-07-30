@@ -162,28 +162,27 @@ public class TextRecognitionActivity extends AppCompatActivity {
                 correctAnsText = block.getText();
                 txtScanText.setText(correctAnsText);
 
-                //Toast.makeText(getApplicationContext(),correctAns + correctAnsText, Toast.LENGTH_SHORT).show();
             }
                     if(correctAnsText.equals(correctAns)){
-                        FirebaseDatabase.getInstance().getReference().child("TextRecognitionScore").child(firebaseUser.getUid()).child("score").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.exists()){
-                                modified_score_textRecog += Integer.parseInt(snapshot.getValue().toString());
-                            }
-                            snapshot.getRef().setValue(modified_score_textRecog);
-                            Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_LONG).show();
-                            TextRecognitionActivity.this.finish();
-                            //startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        }
+                        FirebaseDatabase.getInstance().getReference().child("Score").child(firebaseUser.getUid()).child("score")
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if(snapshot.exists()){
+                                            modified_score_textRecog += Integer.parseInt(snapshot.getValue().toString());
+                                        }
+                                        snapshot.getRef().setValue(modified_score_textRecog);
+                                        TextRecognitionActivity.this.finish();
+                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
+                                    }
+                                });
                 }else{
-                    Toast.makeText(getApplicationContext(), "Sorry, it's wrong...", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Sorry, it's wrong...", Toast.LENGTH_SHORT).show();
                 }
         }
     }

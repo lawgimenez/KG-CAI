@@ -47,6 +47,7 @@ public class TextRecogAdapter extends RecyclerView.Adapter<TextRecogAdapter.Text
         holder.txtInstruction.setText("Instructions: " + textRecogModel.getInstructions());
         holder.txtCorrectAns.setText(textRecogModel.getCorrectAns());
 
+        correctAns = textRecogModel.getCorrectAns();
     }
 
     @Override
