@@ -50,6 +50,8 @@ dependencies {
 
     implementation 'com.getbase:floatingactionbutton:1.10.1' //action button menu
 
+    implementation 'com.squareup.picasso:picasso:2.71828' //this is for picasso img
+
     implementation 'com.google.android.gms:play-services-vision:19.0.0' //OCR
     implementation 'com.google.firebase:firebase-core:15.0.2' //analytics
     implementation 'com.google.firebase:firebase-ml-vision:15.0.0'

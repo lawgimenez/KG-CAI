@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.kg_cai.helpers.Question;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -43,15 +44,15 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private TextView txtTimer, txtQuestion, txtQuesNumber;
     private Button btnOption1, btnOption2, btnOption3, btnOption4;
     private FirebaseFirestore firestore;
-    private int setNo;
-
-    private long backPressedTime;
+    public static int setNo;
 
     private ImageView imgHelp;
 
+    private Toolbar quesToolbar;
+
     private List<Question> questionList; //from Question class
 
-    private Dialog loadingDialog, instructionsDialog;
+    private Dialog loadingDialog;
 
     private int quesNum,score;
     private int hint;
@@ -67,41 +68,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         firestore = FirebaseFirestore.getInstance();
 
-        instructionsDialog = new Dialog(QuestionActivity.this);
-        instructionsDialog.setContentView(R.layout.instructions_dialog); //initialize the loading dialog
-        instructionsDialog.setCancelable(false);
-        instructionsDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        instructionsDialog.show();
-
-        Button btnOkay = instructionsDialog.findViewById(R.id.btnOkayInstructionsDialog);
-
-        btnOkay.setOnClickListener(new View.OnClickListener() { //this is for okay button in instructions dialog
-            @Override
-            public void onClick(View v) {
-                instructionsDialog.dismiss();
-                getQuestionList();
-            }
-        });
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try{
-                    Thread.sleep(10000); //sleep 10 second to show the instructions dialog then proceed into getQuestionsList method
-                    instructionsDialog.dismiss();
-                    getQuestionList();
-
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-
-            }
-        }).start();
-
         loadingDialog = new Dialog(QuestionActivity.this);
         loadingDialog.setContentView(R.layout.loading_progress_bar); //initialize the loading dialog
         loadingDialog.setCancelable(false);
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingDialog.show();
 
         imgHelp = findViewById(R.id.img_help);
 
@@ -123,7 +94,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         questionList = new ArrayList<>();
 
-        rotateHintAnim();
+        rotateLogoAnim();
 
         imgHelp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +103,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-    score = 0;
+        getQuestionList();
+
+        score = 0;
     }
 
 
@@ -206,7 +179,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void startTimer() {
-         countDownTimer = new CountDownTimer(15000,1000) {
+        countDownTimer = new CountDownTimer(15000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 String time = "10";
@@ -288,23 +261,23 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private void getHint() {
         hint++;
         switch (questionList.get(quesNum).getAnswer()) { //look into the selected button if its correct
-                case 1:
-                    btnOption1.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    sleep(1200); //sleep 1 second to load data and open login activity
-                    break;
-                case 2:
-                    btnOption2.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    sleep(1200); //sleep 1 second to load data and open login activity
-                    break;
-                case 3:
-                    btnOption3.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    sleep(1200); //sleep 1 second to load data and open login activity
-                    break;
-                case 4:
-                    btnOption4.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    sleep(1200); //sleep 1 second to load data and open login activity
-                    break;
-            }
+            case 1:
+                btnOption1.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                sleep(1200); //sleep 1 second to load data and open login activity
+                break;
+            case 2:
+                btnOption2.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                sleep(1200); //sleep 1 second to load data and open login activity
+                break;
+            case 3:
+                btnOption3.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                sleep(1200); //sleep 1 second to load data and open login activity
+                break;
+            case 4:
+                btnOption4.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                sleep(1200); //sleep 1 second to load data and open login activity
+                break;
+        }
         countDownTimer.cancel();
 
         if(hint>=1){
@@ -397,32 +370,20 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
-    }    private void rotateHintAnim() {
-
-        rotateLogoAnim = AnimationUtils.loadAnimation(this, R.anim.logoanim);
-        imgHelp.startAnimation(rotateLogoAnim);
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-            countDownTimer.cancel();
-            finish();
+        countDownTimer.cancel();
+
     }
 
-        @Override
-        public void onBackPressed() {
-            if(backPressedTime + 2000 > System.currentTimeMillis()){ //2 seconds
-                Intent intent = new Intent(getApplicationContext(), QuizResultActivity.class);
-                intent.putExtra("SCORE", String.valueOf(score));
-                intent.putExtra("SCORE_OVER", String.valueOf(questionList.size()));
-                startActivity(intent);
-            }else{
-                Toast.makeText(getApplicationContext(), "Press back again to finish, Your score will be recorded", Toast.LENGTH_SHORT).show();
-            }
-            backPressedTime = System.currentTimeMillis();
-        }
+    private void rotateLogoAnim() {
+
+        rotateLogoAnim = AnimationUtils.loadAnimation(this, R.anim.logoanim);
+        imgHelp.startAnimation(rotateLogoAnim);
 
 
+    }
 
 }

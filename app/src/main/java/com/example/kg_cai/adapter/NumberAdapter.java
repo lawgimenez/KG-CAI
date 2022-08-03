@@ -17,9 +17,6 @@ import com.example.kg_cai.helpers.NumberHelper;
 
 import java.util.ArrayList;
 
-//import ideanity.oceans.kidslearning.R;
-//import ideanity.oceans.kidslearning.RecyclerViewAction;
-//import ideanity.oceans.kidslearning.helpers.NumberHelper;
 
 public class NumberAdapter extends RecyclerView.Adapter<NumberAdapter.ColorViewHolder>{
     ArrayList<NumberHelper> number;

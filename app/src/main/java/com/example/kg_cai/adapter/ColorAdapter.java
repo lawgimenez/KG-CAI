@@ -18,9 +18,7 @@ import com.example.kg_cai.helpers.ColorHelper;
 
 import java.util.ArrayList;
 
-//import ideanity.oceans.kidslearning.R;
-//import ideanity.oceans.kidslearning.RecyclerViewAction;
-//import ideanity.oceans.kidslearning.helpers.ColorHelper;
+
 
 public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHolder>{
     ArrayList<ColorHelper> color;

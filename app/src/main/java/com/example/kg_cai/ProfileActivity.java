@@ -139,8 +139,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void updateUi(String name, Uri pickedImg, FirebaseUser currentUser) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Score");
 
-
-
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("user_image");
         final StorageReference imgFilePath = storageReference.child(pickedImg.getLastPathSegment());
 

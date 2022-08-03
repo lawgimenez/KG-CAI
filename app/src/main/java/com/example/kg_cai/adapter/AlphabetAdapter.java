@@ -17,10 +17,6 @@ import com.example.kg_cai.helpers.AlphabetHelper;
 
 import java.util.ArrayList;
 
-//import ideanity.oceans.kidslearning.R;
-//import ideanity.oceans.kidslearning.RecyclerViewAction;
-//import ideanity.oceans.kidslearning.helpers.AlphabetHelper;
-
 public class AlphabetAdapter extends RecyclerView.Adapter<AlphabetAdapter.ColorViewHolder>{
     ArrayList<AlphabetHelper> alphabet;
     private Context mContext;

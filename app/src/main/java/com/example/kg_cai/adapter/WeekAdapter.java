@@ -17,10 +17,6 @@ import com.example.kg_cai.helpers.WeekHelper;
 
 import java.util.ArrayList;
 
-//import ideanity.oceans.kidslearning.R;
-//import ideanity.oceans.kidslearning.RecyclerViewAction;
-//import ideanity.oceans.kidslearning.helpers.WeekHelper;
-
 public class WeekAdapter extends RecyclerView.Adapter<WeekAdapter.ColorViewHolder>{
     ArrayList<WeekHelper> week;
     private Context mContext;

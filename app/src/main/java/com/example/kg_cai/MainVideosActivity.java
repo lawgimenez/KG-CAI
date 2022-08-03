@@ -28,6 +28,10 @@ public class MainVideosActivity extends AppCompatActivity {
         btnQuiz = findViewById(R.id.btnQuiz);
         btnLanguageLiteracy = findViewById(R.id.btnVideoLanguageLiteracy);
 
+        Toolbar toolbar = findViewById(R.id.toolbar_videos);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         btnNumeracy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +75,6 @@ public class MainVideosActivity extends AppCompatActivity {
             }
         });
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button

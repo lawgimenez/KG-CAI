@@ -1,5 +1,11 @@
 package com.example.kg_cai;
 
+import static com.example.kg_cai.QuestionActivity.setNo;
+import static com.example.kg_cai.SetsActivity.setsIDs;
+import static com.example.kg_cai.SplashActivity.catList;
+import static com.example.kg_cai.SplashActivity.selected_cat_index;
+import static com.example.kg_cai.adapter.SetsAdapter.setTitle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +14,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,30 +52,43 @@ public class QuizResultActivity extends AppCompatActivity {
         modified_score = Integer.parseInt(score);
         over = getIntent().getStringExtra("SCORE_OVER");
 
-
         tvScore.setText(score + "/" + over);
 
-        btnDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { //score will be stored in realtime db in specific subject name ex: Numeracy score.
-                databaseReference.child("Score").child(firebaseUser.getUid()).child("score").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("Score").child(firebaseUser.getUid()).child(catList.get(selected_cat_index).getName()+"Sets").child(setTitle).child("score")
+                .setValue(score)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-                            modified_score += Integer.parseInt(snapshot.getValue().toString());
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(), "Data added", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                         }
-                        snapshot.getRef().setValue(modified_score);
-                        QuizResultActivity.this.finish();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
 
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) { //score will be stored in realtime db in specific subject name ex: Numeracy score.
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                QuizResultActivity.this.finish();
+                databaseReference.child("Score").child(firebaseUser.getUid()).child("score")
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+                                    modified_score += Integer.parseInt(snapshot.getValue().toString());
+                                }
+                                snapshot.getRef().setValue(modified_score);
+                                QuizResultActivity.this.finish();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
             }
         });
 

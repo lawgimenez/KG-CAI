@@ -2,14 +2,15 @@ package com.example.kg_cai;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.kg_cai.helpers.MyServiceMusic;
 
@@ -29,7 +30,10 @@ public class MainSoundsActivity extends AppCompatActivity {
         alphabet = findViewById(R.id.alphabet);
         week = findViewById(R.id.week);
         shape = findViewById(R.id.shape);
-        btnSoundsMiniGame = findViewById(R.id.btnSoundsMiniGame);
+
+        Toolbar toolbar = findViewById(R.id.toolbar_sounds);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         color.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,17 +85,22 @@ public class MainSoundsActivity extends AppCompatActivity {
             }
         });
 
-        btnSoundsMiniGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainSoundsActivity.this, TextRecognition.class));
-            }
-        });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button
+        if (item.getItemId() == android.R.id.home) {
+            MainSoundsActivity.this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onBackPressed() {
         MainSoundsActivity.this.finish();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
+
+
 
 }

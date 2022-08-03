@@ -16,9 +16,6 @@ import com.example.kg_cai.helpers.ShapeHelper;
 
 import java.util.ArrayList;
 
-//import ideanity.oceans.kidslearning.R;
-//import ideanity.oceans.kidslearning.RecyclerViewAction;
-//import ideanity.oceans.kidslearning.helpers.ShapeHelper;
 
 public class ShapeAdapter extends RecyclerView.Adapter<ShapeAdapter.ColorViewHolder>{
     ArrayList<ShapeHelper> shape;
