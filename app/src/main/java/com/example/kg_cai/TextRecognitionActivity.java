@@ -1,6 +1,6 @@
 package com.example.kg_cai;
 
-import static com.example.kg_cai.TextRecogAdapter.correctAns;
+import static com.example.kg_cai.adapter.TextRecogAdapter.correctAns;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.kg_cai.adapter.TextRecogAdapter;
 import com.example.kg_cai.helpers.TextRecogModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

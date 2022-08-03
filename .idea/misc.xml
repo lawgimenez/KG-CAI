@@ -19,8 +19,12 @@
         <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/shape_item.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable-v24/subject_border.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable/gradient_background.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable/ic_baseline_menu_book_24.xml" value="0.3828125" />
+        <entry key="..\:/KGCAI/app/src/main/res/drawable/ic_baseline_music_note_24.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable/ic_baseline_video_library_24.xml" value="0.3828125" />
         <entry key="..\:/KGCAI/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
@@ -57,6 +61,7 @@
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_sounds_main.xml" value="0.33" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_subject.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/activity_text.xml" value="0.24114583333333334" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_text_recognition.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_video.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/activity_video_row.xml" value="0.36666666666666664" />
@@ -67,6 +72,7 @@
         <entry key="..\:/KGCAI/app/src/main/res/layout/fragment_text.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/fragment_videos.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/home.xml" value="0.24114583333333334" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/instructions_dialog.xml" value="0.32222222222222224" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/item_allalphabet.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/item_allcolors.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/item_allnumbers.xml" value="0.36666666666666664" />
@@ -78,10 +84,13 @@
         <entry key="..\:/KGCAI/app/src/main/res/layout/sets_item_layout.xml" value="0.33" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/subj_item_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/surfaceview.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/layout/text_item_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/textrecog_item_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/layout/video_row.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/KGCAI/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.25729166666666664" />
+        <entry key="..\:/KGCAI/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.25729166666666664" />
       </map>
     </option>
   </component>

@@ -25,8 +25,6 @@ import java.util.List;
 
 public class LeaderboardsActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-
     private RecyclerView leaderboardRv;
     private ProgressBar progressBar;
     List<ScoreDataModel> list;
@@ -40,11 +38,10 @@ public class LeaderboardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboards);
 
-        toolbar = findViewById(R.id.toolbar_leaderboards);
-
         leaderboardRv = findViewById(R.id.leaderboardRv);
         progressBar = findViewById(R.id.leaderboardProgressboard);
 
+        Toolbar toolbar = findViewById(R.id.toolbar_leaderboards);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Leaderboard");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

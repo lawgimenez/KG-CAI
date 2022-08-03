@@ -5,7 +5,7 @@
         android:toXScale="1.0"
         android:fromYScale="0.6"
         android:toYScale="1.0"
-        android:duration="2500"
+        android:duration="1500"
         android:pivotX="50%"
         android:pivotY="50%"
         />
@@ -17,7 +17,6 @@
         android:fromDegrees="6"
         android:duration="2000"
         android:repeatMode="reverse"
-        android:repeatCount="1"
         >
     </rotate>
 </set>

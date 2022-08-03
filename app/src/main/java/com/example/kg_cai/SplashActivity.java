@@ -46,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try{
-                    sleep(1050); //sleep 1 second to load data and open login activity
+                    sleep(1700); //sleep 1 second to load data and open login activity
                     loadData();
 
                 }catch (InterruptedException e){

@@ -21,43 +21,48 @@
             android:background="#FFC107">
 
         <ImageView
-            android:id="@+id/imgInstruction"
+            android:id="@+id/imgText"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="170dp"
             android:layout_margin="3dp"
-            android:background="#F4F4F4"
             android:scaleType="fitXY"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
+
 
         <TextView
-            android:id="@+id/txtInstructions"
+            android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFC107"
-            android:padding="7dp"
-            android:text="Instruction: "
-            android:gravity="center"
+            android:padding="10dp"
+            android:text="Title: "
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgInstruction" />
 
         <TextView
-            android:id="@+id/txtCorrectAns"
+            android:id="@+id/txtText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue"
-            android:padding="6dp"
-            android:text="Word:"
-            android:textColor="@color/white"
+            android:padding="10dp"
+            android:text="Story: "
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:visibility="gone"
+            android:background="#FFEB3B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtInstructions" />
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
