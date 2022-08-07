@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KGCAI">
         <activity
+            android:name=".MainSoundActivity"
+            android:exported="true" />
+        <activity
             android:name=".TextActivity"
             android:exported="true" />
         <activity
@@ -62,7 +65,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".MainSoundsActivity"
+            android:name=".MainSoundssssActivity"
             android:exported="true" />
         <activity
             android:name=".AlphabetActivity"

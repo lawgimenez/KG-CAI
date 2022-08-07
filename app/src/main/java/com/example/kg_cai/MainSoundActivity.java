@@ -1,21 +1,21 @@
 package com.example.kg_cai;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
+import com.example.kg_cai.adapter.SoundAdapter;
 import com.example.kg_cai.adapter.TextAdapter;
+import com.example.kg_cai.helpers.SoundModel;
 import com.example.kg_cai.helpers.TextModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,48 +26,47 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextActivity extends AppCompatActivity {
+public class MainSoundActivity extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference mReference;
-    FirebaseStorage firebaseStorage;
 
-    private RecyclerView textRv;
-    FloatingActionButton btnAddText;
+    SoundAdapter soundAdapter;
+    List<SoundModel> list;
 
-
-    TextAdapter textAdapter;
-    List<TextModel> list;
+    private RecyclerView soundRv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_text);
+        setContentView(R.layout.activity_main_sound);
 
-        textRv = findViewById(R.id.textRv);
+        soundRv = findViewById(R.id.soundRv);
+        list = new ArrayList<>();
 
+        Toolbar toolbar = findViewById(R.id.toolbar_sound);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setReverseLayout(true);
+        manager.setStackFromEnd(true);
+        soundRv.setLayoutManager(manager);
+        soundRv.setHasFixedSize(true);
         list = new ArrayList<>();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseStorage = FirebaseStorage.getInstance();
-
-        String sub = getIntent().getStringExtra("txtFolder"); //came from mainTextActivity
-        mReference = firebaseDatabase.getReference().child(sub);
-
-        Toolbar toolbar = findViewById(R.id.toolbar_texts);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mReference = firebaseDatabase.getReference().child("Sounds");
 
         mReference.orderByChild("Title").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    TextModel textModel = dataSnapshot.getValue(TextModel.class);
-                    list.add(textModel);
+                    SoundModel soundModel = dataSnapshot.getValue(SoundModel.class);
+                    list.add(soundModel);
                 }
-                textAdapter = new TextAdapter(list, TextActivity.this);
-                textRv.setAdapter(textAdapter);
-
+                soundAdapter = new SoundAdapter(list, MainSoundActivity.this);
+                soundRv.setAdapter(soundAdapter);
             }
 
             @Override
@@ -78,13 +77,17 @@ public class TextActivity extends AppCompatActivity {
 
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button
         if (item.getItemId() == android.R.id.home) {
-            TextActivity.this.finish();
+            MainSoundActivity.this.finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        MainSoundActivity.this.finish();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 }

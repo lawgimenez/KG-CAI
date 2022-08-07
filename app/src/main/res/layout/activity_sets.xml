@@ -21,6 +21,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white" />
 
+
+    <TextView
+        android:id="@+id/txtNone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Empty"
+        android:textColor="#dcdcdc"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setsToolbar" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/setsRecyclerView"
         android:layout_width="match_parent"

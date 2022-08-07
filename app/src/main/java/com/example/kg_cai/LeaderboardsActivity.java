@@ -72,17 +72,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-//        databaseReference.child("3QetInSw5DXGrd8beABIx88c6oj2").child("wew").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                if (!task.isSuccessful()) {
-//                    Log.e("firebase", "Error getting data", task.getException());
-//                }
-//                else {
-//                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
-//                }
-//            }
-//        });
+
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button

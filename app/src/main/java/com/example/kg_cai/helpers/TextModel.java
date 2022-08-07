@@ -2,23 +2,23 @@ package com.example.kg_cai.helpers;
 
 public class TextModel {
 
-    String title, img, text;
+    String Title, img, text;
 
     public TextModel() {
     }
 
     public TextModel(String title, String img, String text) {
-        this.title = title;
+        this.Title = title;
         this.img = img;
         this.text = text;
     }
 
     public String getTitle() {
-        return title;
+        return Title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.Title = title;
     }
 
     public String getImg() {
