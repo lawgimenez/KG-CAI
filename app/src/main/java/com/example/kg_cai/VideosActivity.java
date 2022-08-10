@@ -42,9 +42,6 @@ public class VideosActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //service for background music use to start
-        Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
-        stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
 
         //service for background music use to stop
         new Intent(getApplicationContext(), MyServiceMusic.class);
@@ -99,6 +96,7 @@ public class VideosActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button
         if (item.getItemId() == android.R.id.home) {
             VideosActivity.this.finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

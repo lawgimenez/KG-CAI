@@ -14,13 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KGCAI">
         <activity
+            android:name=".SoundActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainSoundActivity"
             android:exported="true" />
         <activity
             android:name=".TextActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ReadActivity"
             android:exported="true" />
         <activity
             android:name=".TextRecognitionActivity"
@@ -64,16 +64,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity
-            android:name=".MainSoundssssActivity"
-            android:exported="true" />
-        <activity
-            android:name=".AlphabetActivity"
-            android:exported="true" />
-        <activity android:name=".ShapesActivity" />
-        <activity android:name=".WeekActivity" />
-        <activity android:name=".NumbersActivity" />
-        <activity android:name=".ColorsActivity" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
