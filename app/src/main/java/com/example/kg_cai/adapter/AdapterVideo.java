@@ -28,7 +28,6 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>
     private ArrayList<ModelVideo> videoArrayList;
 
     //constructor
-
     public AdapterVideo(Context context, ArrayList<ModelVideo> videoArrayList) {
         this.context = context;
         this.videoArrayList = videoArrayList;
@@ -49,15 +48,7 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>
         //get data
         ModelVideo modelVideo = videoArrayList.get(position);
 
-        String id = modelVideo.getID();
         String title = modelVideo.getTitle();
-        String timestamp = modelVideo.getTimeStamp();
-        String videoUrl = modelVideo.getVideoUrl();
-
-        //format timestamp
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTimeInMillis(Long.parseLong(timestamp));
-//        String formattedDateTime = DateFormat.format("dd/MM/yyyy K:mm a", calendar).toString();
 
         //set data
         holder.titleTv.setText(title);
@@ -138,7 +129,7 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>
 
         //UI views of row_video.xml
         VideoView videoView;
-        TextView titleTv, timeTv;
+        TextView titleTv;
         ProgressBar progressBar;
 
         public HolderVideo(@NonNull View itemView) {
@@ -147,7 +138,6 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>
             //init UI views of row_video.xml
             videoView = itemView.findViewById(R.id.videoView);
             titleTv = itemView.findViewById(R.id.txtTitle);
-            //timeTv = itemView.findViewById(R.id.txtTime);
             progressBar = itemView.findViewById(R.id.progressBar);
 
 

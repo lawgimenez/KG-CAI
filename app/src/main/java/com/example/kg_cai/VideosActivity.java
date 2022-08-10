@@ -2,10 +2,12 @@ package com.example.kg_cai;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.kg_cai.adapter.AdapterVideo;
 import com.example.kg_cai.helpers.ModelVideo;
@@ -36,9 +38,10 @@ public class VideosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videos);
 
-        //service for background music use to start
-        Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
-        stopService(new Intent(getApplicationContext(), MyServiceMusic.class));
+        Toolbar toolbar = findViewById(R.id.toolbar_video); //toolbar
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         //service for background music use to stop
         new Intent(getApplicationContext(), MyServiceMusic.class);
@@ -87,6 +90,15 @@ public class VideosActivity extends AppCompatActivity {
     public void onBackPressed() {
         VideosActivity.this.finish();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button
+        if (item.getItemId() == android.R.id.home) {
+            VideosActivity.this.finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -26,7 +26,7 @@ public class MyServiceMusic extends Service {
     public void onCreate() {
         super.onCreate();
 
-        ArrayList<Integer> songs = new ArrayList<>();
+        ArrayList<Integer> songs = new ArrayList<>(); //arraylist consists of audios
         songs.add(0, R.raw.cute_bg_music_1);
         songs.add(1, R.raw.cute_bg_music);
         songs.add(2, R.raw.cute_bg_music_2);
