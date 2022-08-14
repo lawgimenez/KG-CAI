@@ -4,11 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import com.example.kg_cai.adapter.AdapterVideo;
 import com.example.kg_cai.helpers.ModelVideo;
 import com.example.kg_cai.helpers.MyServiceMusic;

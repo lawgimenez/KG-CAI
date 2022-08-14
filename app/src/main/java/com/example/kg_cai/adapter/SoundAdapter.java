@@ -9,10 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.kg_cai.R;
 import com.example.kg_cai.helpers.SoundModel;
@@ -45,21 +43,21 @@ public class SoundAdapter extends RecyclerView.Adapter<SoundAdapter.SoundHolder>
         holder.soundsLinearLayout.setOnClickListener(new View.OnClickListener() { //if item was clicked the audio will play
             @Override
             public void onClick(View v) {
-                        MediaPlayer mediaPlayer = new MediaPlayer();
-                        mediaPlayer.setLooping(false);
-                        try{
-                            mediaPlayer.setDataSource(soundModel.getAudio());
+                MediaPlayer mediaPlayer = new MediaPlayer();
+                mediaPlayer.setLooping(false);
+                try{
+                    mediaPlayer.setDataSource(soundModel.getAudio());
 
-                            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                                @Override
-                                public void onPrepared(MediaPlayer mp) {
-                                    mp.start();
-                                }
-                            });
-                            mediaPlayer.prepare();
-                        }catch (Exception e){
-                            Toast.makeText(context.getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            mp.start();
                         }
+                    });
+                    mediaPlayer.prepare();
+                }catch (Exception e){
+                    Toast.makeText(context.getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -76,7 +74,7 @@ public class SoundAdapter extends RecyclerView.Adapter<SoundAdapter.SoundHolder>
         return list.size();
     }
 
-    class SoundHolder extends RecyclerView.ViewHolder{
+    static class SoundHolder extends RecyclerView.ViewHolder{
         private TextView txtSounds;
         private ImageView imgSound;
         private LinearLayout soundsLinearLayout;

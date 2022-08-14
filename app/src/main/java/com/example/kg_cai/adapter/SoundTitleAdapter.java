@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.kg_cai.R;
 import com.example.kg_cai.SoundActivity;
 import com.example.kg_cai.helpers.SoundTitleModel;
@@ -54,7 +53,7 @@ public class SoundTitleAdapter extends RecyclerView.Adapter<SoundTitleAdapter.Ho
         return list.size();
     }
 
-    class HolderSounds extends RecyclerView.ViewHolder {
+    public static class HolderSounds extends RecyclerView.ViewHolder {
         TextView tvSoundsName;
 
         public HolderSounds(@NonNull View itemView) {

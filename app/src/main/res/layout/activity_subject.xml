@@ -7,14 +7,13 @@
     tools:context=".SubjectActivity"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/blue"
+    android:background="@drawable/primary_background"
     >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_subject"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

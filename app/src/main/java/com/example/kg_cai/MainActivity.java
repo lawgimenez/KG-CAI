@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import com.example.kg_cai.helpers.MyServiceMusic;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -25,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        //btnTextRecognition = findViewById(R.id.btnTextRecognition);
+        //btnTextRecognition = findViewById(R.id.btnTextRecognition); ready for panel request
         btnStartQuiz = findViewById(R.id.btnStartQuiz_Main);
         btnLeaderBoards = findViewById(R.id.btnLeaderboards);
         btnText_Main = findViewById(R.id.btnText_Main);
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//
+// ready for panel request
 //        btnTextRecognition.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

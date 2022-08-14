@@ -1,23 +1,19 @@
 package com.example.kg_cai;
 
 import static java.lang.Thread.sleep;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.kg_cai.helpers.SubjectModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
 
     public static List<SubjectModel> catList = new ArrayList<>(); //this is the arraylist of the subjects from firebase
     public static int selected_cat_index = 0;
-    private FirebaseFirestore firestore;
+    private FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
 
         imgLogo.setAnimation(anim);
 
-        firestore = FirebaseFirestore.getInstance(); //initialization for firestore
+        firebaseFirestore = FirebaseFirestore.getInstance(); //initialization for firestore
 
         new Thread(new Runnable() {
             @Override
@@ -60,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
     private void loadData() {
         catList.clear(); //Clear the arraylist of the subject
 
-        firestore.collection("QUIZ").document("Categories")
+        firebaseFirestore.collection("QUIZ").document("Categories")
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

@@ -2,29 +2,18 @@ package com.example.kg_cai;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,8 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView btnForgotPass;
     private Button btnLogin;
 
-
-    FirebaseFirestore firestore;
+    FirebaseFirestore firebaseFirestore;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -50,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         btnForgotPass = findViewById(R.id.btnForgotPass);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        firestore = FirebaseFirestore.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         btnForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override

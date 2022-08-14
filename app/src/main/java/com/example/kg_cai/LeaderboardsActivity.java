@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.kg_cai.adapter.ScoreAdapter;
 import com.example.kg_cai.helpers.ScoreDataModel;
 import com.google.firebase.database.DataSnapshot;
@@ -43,11 +41,11 @@ public class LeaderboardsActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar_leaderboards);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Leaderboard");
+        getSupportActionBar().setTitle("Leaderboards");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Score");
-        list = new ArrayList<>();
+        list = new ArrayList<ScoreDataModel>();
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setReverseLayout(true);
         manager.setStackFromEnd(true);
@@ -55,7 +53,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
         leaderboardRv.setHasFixedSize(true);
 
 
-        databaseReference.orderByChild("score").addValueEventListener(new ValueEventListener() {
+        databaseReference.orderByChild("overallScore").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -72,6 +70,29 @@ public class LeaderboardsActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                int sum = 0;
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                    Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
+//                    Object score = map.get("Score");
+//                    int value = Integer.parseInt(String.valueOf(score));
+//                    sum += value;
+//
+//                    list.add(sum);
+//                }
+//                scoreAdapter = new ScoreAdapter(list,LeaderboardsActivity.this);
+//                leaderboardRv.setAdapter(scoreAdapter);
+//                progressBar.setVisibility(View.GONE);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        })
 
     }
     @Override

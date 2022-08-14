@@ -4,10 +4,8 @@ import static android.os.SystemClock.sleep;
 import static com.example.kg_cai.SetsActivity.setsIDs;
 import static com.example.kg_cai.SplashActivity.catList;
 import static com.example.kg_cai.SplashActivity.selected_cat_index;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.Animator;
 import android.app.Dialog;
 import android.content.Intent;
@@ -25,15 +23,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
 import com.example.kg_cai.helpers.Question;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -43,12 +38,10 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     private TextView txtTimer, txtQuestion, txtQuesNumber;
     private Button btnOption1, btnOption2, btnOption3, btnOption4;
-    private FirebaseFirestore firestore;
+    private FirebaseFirestore firebaseFirestore;
     public static int setNo;
 
     private ImageView imgHelp;
-
-    private Toolbar quesToolbar;
 
     private List<Question> questionList; //from Question class
 
@@ -66,7 +59,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        firestore = FirebaseFirestore.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         loadingDialog = new Dialog(QuestionActivity.this);
         loadingDialog.setContentView(R.layout.loading_progress_bar); //initialize the loading dialog
@@ -85,7 +78,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         btnOption3 = findViewById(R.id.btnOption3_question);
         btnOption4 = findViewById(R.id.btnOption4_question);
 
-        setNo = getIntent().getIntExtra("SETNO",1); //it is from setsAdapter class
+        setNo = getIntent().getIntExtra("setNo",1); //it is from setsAdapter class
 
         btnOption1.setOnClickListener(this);
         btnOption2.setOnClickListener(this);
@@ -112,7 +105,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private void getQuestionList() {
         questionList.clear();
 
-        firestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
+        firebaseFirestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
                 .collection(setsIDs.get(setNo)).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -131,7 +124,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
                         for(int i=0; i < Integer.valueOf(count); i++)
                         {
-                            String quesID = quesListDoc.getString("Q" + String.valueOf(i+1) + "_ID"); //get the id of the question in question_list
+                            String quesID = quesListDoc.getString("Q" + (i+1) + "_ID"); //get the id of the question in question_list
 
                             QueryDocumentSnapshot quesDoc = docList.get(quesID);
 
@@ -182,7 +175,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         countDownTimer = new CountDownTimer(15000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                String time = "10";
                 txtTimer.setText(String.valueOf(millisUntilFinished/1000)); //setText of what was the remaining time
                 if(millisUntilFinished < 10000){
                     txtTimer.setBackgroundResource(R.drawable.round_timer_bg_red);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SoundActivity"
-    android:background="@color/blue">
+    android:background="@drawable/primary_background">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_Sounds"

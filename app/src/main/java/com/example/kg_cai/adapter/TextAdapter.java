@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.kg_cai.R;
 import com.example.kg_cai.helpers.TextModel;
@@ -50,7 +48,7 @@ public class TextAdapter extends RecyclerView.Adapter<TextAdapter.TextViewAdapte
         return list.size();
     }
 
-    public class TextViewAdapter extends RecyclerView.ViewHolder {
+    public static class TextViewAdapter extends RecyclerView.ViewHolder {
         ImageView imgText;
         TextView txtTitle,txtText;
 

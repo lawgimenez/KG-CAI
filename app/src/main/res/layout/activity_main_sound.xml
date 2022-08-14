@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/secondary_background"
+    android:background="@drawable/primary_sounds_background"
     android:gravity="center"
     >
 
@@ -35,7 +35,7 @@
             android:fontFamily="sans-serif-condensed"
             android:letterSpacing="0.03"
             android:text="Listen to \nLearn!"
-            android:textColor="#107C10"
+            android:textColor="@color/white"
             android:textSize="50sp"
             android:textStyle="bold" />
 
@@ -51,11 +51,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:background="@drawable/primary_sounds_background"
-        android:layout_marginBottom="210dp"
-        android:layout_margin="7dp">
-
-
+        android:background="@drawable/secondary_background"
+        android:padding="10dp"
+        >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/soundRv"

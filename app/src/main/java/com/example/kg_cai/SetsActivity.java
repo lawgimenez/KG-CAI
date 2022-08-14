@@ -2,32 +2,25 @@ package com.example.kg_cai;
 
 import static com.example.kg_cai.SplashActivity.catList;
 import static com.example.kg_cai.SplashActivity.selected_cat_index;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
-import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.example.kg_cai.adapter.SetsAdapter;
 import com.example.kg_cai.helpers.SetsModelClass;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SetsActivity extends AppCompatActivity {
 
     private Toolbar setsToolbar;
     private RecyclerView setsRecyclerView;
-    private FirebaseFirestore firestore;
+    private FirebaseFirestore firebaseFirestore;
 
     public static List<SetsModelClass> setsList = new ArrayList<SetsModelClass>();
     public static List<String> setsIDs = new ArrayList<>();
@@ -44,7 +37,7 @@ public class SetsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(catList.get(selected_cat_index).getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        firestore = FirebaseFirestore.getInstance(); //initialization of firestore
+        firebaseFirestore = FirebaseFirestore.getInstance(); //initialization of firestore
 
         loadSets();
 
@@ -54,7 +47,7 @@ public class SetsActivity extends AppCompatActivity {
     private void loadSets() {
         setsList.clear(); //Clear the arraylist of the sets
 
-        firestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
+        firebaseFirestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot doc) {

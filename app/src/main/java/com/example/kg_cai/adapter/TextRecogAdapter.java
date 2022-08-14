@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
@@ -52,7 +51,7 @@ public class TextRecogAdapter extends RecyclerView.Adapter<TextRecogAdapter.Text
         return list.size();
     }
 
-    public class TextRecogViewAdapter extends RecyclerView.ViewHolder {
+    public static class TextRecogViewAdapter extends RecyclerView.ViewHolder {
         ImageView imgInstruction;
         TextView txtInstruction,txtCorrectAns;
 

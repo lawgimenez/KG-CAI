@@ -3,18 +3,15 @@ package com.example.kg_cai;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Switch;
-
 import com.example.kg_cai.helpers.MyServiceMusic;
 
 public class AppSettingsActivity extends AppCompatActivity {
 
-    private Intent musicServiceIntent;
     private Switch switchMusic;
 
     @Override
@@ -28,7 +25,7 @@ public class AppSettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
+        Intent musicServiceIntent = new Intent(getApplicationContext(), MyServiceMusic.class);
 
         switchMusic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,14 +37,7 @@ public class AppSettingsActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
-
-
-
-
 
 
     @Override

@@ -3,15 +3,15 @@ package com.example.kg_cai.helpers;
 public class ScoreDataModel {
 
     String name,image;
-    Long score;
+    Long overallScore;
 
     public ScoreDataModel() {
     }
 
-    public ScoreDataModel(String name, String image, Long score) {
+    public ScoreDataModel(String name, String image, Long overallScore) {
         this.name = name;
         this.image = image;
-        this.score = score;
+        this.overallScore = overallScore;
     }
 
     public String getName() {
@@ -30,11 +30,11 @@ public class ScoreDataModel {
         this.image = image;
     }
 
-    public Long getScore() {
-        return score;
+    public Long getOverallScore() {
+        return overallScore;
     }
 
-    public void setScore(Long score) {
-        this.score = score;
+    public void setOverallScore(Long overallScore) {
+        this.overallScore = overallScore;
     }
 }

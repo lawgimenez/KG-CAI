@@ -10,13 +10,10 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.kg_cai.R;
 import com.example.kg_cai.helpers.ModelVideo;
-
 import java.util.ArrayList;
 
 public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>{
@@ -25,7 +22,7 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>
     private Context context;
 
     //array list
-    private ArrayList<ModelVideo> videoArrayList;
+    private final ArrayList<ModelVideo> videoArrayList;
 
     //constructor
     public AdapterVideo(Context context, ArrayList<ModelVideo> videoArrayList) {
@@ -52,7 +49,6 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>
 
         //set data
         holder.titleTv.setText(title);
-        //holder.timeTv.setText(formattedDateTime);
         setVideoUrl(modelVideo, holder);
     }
 
