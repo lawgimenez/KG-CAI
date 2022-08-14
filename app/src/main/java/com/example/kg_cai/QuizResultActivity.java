@@ -1,21 +1,16 @@
 package com.example.kg_cai;
 
-import static com.example.kg_cai.QuestionActivity.setNo;
-import static com.example.kg_cai.SetsActivity.setsIDs;
 import static com.example.kg_cai.SplashActivity.catList;
 import static com.example.kg_cai.SplashActivity.selected_cat_index;
 import static com.example.kg_cai.adapter.SetsAdapter.setTitle;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,7 +55,7 @@ public class QuizResultActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "Data added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Score Recorded", Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                         }
@@ -69,10 +64,8 @@ public class QuizResultActivity extends AppCompatActivity {
                 });
 
         btnDone.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { //score will be stored in realtime db in specific subject name ex: Numeracy score.
-//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                QuizResultActivity.this.finish();
-                databaseReference.child("Score").child(firebaseUser.getUid()).child("score")
+            @Override public void onClick(View v) {
+                databaseReference.child("Score").child(firebaseUser.getUid()).child("overallScore") //overallScore will be stored in realtime db in specific subject name.
                         .addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {

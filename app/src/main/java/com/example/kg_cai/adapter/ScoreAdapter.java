@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.kg_cai.R;
 import com.example.kg_cai.helpers.ScoreDataModel;
@@ -42,7 +40,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewAda
         ScoreDataModel scoreDataModel = list.get(position);
 
         holder.name.setText(scoreDataModel.getName());
-        holder.score.setText("Score: "+String.valueOf(scoreDataModel.getScore()));
+        holder.score.setText("Score: "+scoreDataModel.getOverallScore());
 
         holder.rank.setText(String.valueOf(list.size()-position));
         Glide.with(context).load(scoreDataModel.getImage()).into(holder.scoreImg);
@@ -55,7 +53,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewAda
         return list.size();
     }
 
-    public class ScoreViewAdapter extends RecyclerView.ViewHolder {
+    public static class ScoreViewAdapter extends RecyclerView.ViewHolder {
 
         ImageView scoreImg;
         TextView name, score, rank;

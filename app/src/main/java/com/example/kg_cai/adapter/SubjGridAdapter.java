@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.kg_cai.R;
 import com.example.kg_cai.SetsActivity;
 import com.example.kg_cai.SplashActivity;
@@ -16,10 +15,8 @@ import com.example.kg_cai.helpers.SubjectModel;
 import java.util.List;
 
 public class SubjGridAdapter extends BaseAdapter {
-    private List<SubjectModel> subjList;
+    private final List<SubjectModel> subjList;
     private Integer[] imageid;
-
-    public static String subjName;
 
     public SubjGridAdapter(List<SubjectModel> subjList, Integer[] imageid) {
         this.subjList = subjList;
@@ -66,6 +63,7 @@ public class SubjGridAdapter extends BaseAdapter {
         ((ImageView) view.findViewById(R.id.subjLogo_itemLayout)).setImageResource(imageid[position]);
 
 
+        /**for design**/
 //        Random rand = new Random();
 //        int color = Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)); //gives you a random color for the background
 //        view.setBackgroundColor(color);

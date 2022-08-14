@@ -1,18 +1,12 @@
 package com.example.kg_cai;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
-
 import com.example.kg_cai.adapter.TextAdapter;
 import com.example.kg_cai.helpers.TextModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,7 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +26,6 @@ public class TextActivity extends AppCompatActivity {
     FirebaseStorage firebaseStorage;
 
     private RecyclerView textRv;
-    FloatingActionButton btnAddText;
-
 
     TextAdapter textAdapter;
     List<TextModel> list;

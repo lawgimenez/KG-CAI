@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,9 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-import com.example.kg_cai.helpers.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
 
-    static int REQUEST_CODE = 1;
+    static int REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +98,6 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                UserModel user = new UserModel(txtName.getText().toString(), txtEmail.getText().toString());
                 updateUi(txtName.getText().toString(),pickedImg, firebaseAuth.getCurrentUser());
                 ProfileActivity.this.finish();
             }

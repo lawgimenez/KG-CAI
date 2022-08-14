@@ -3,13 +3,11 @@ package com.example.kg_cai;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public class MainVideosActivity extends AppCompatActivity {
@@ -36,7 +34,7 @@ public class MainVideosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), VideosActivity.class);
-                intent.putExtra("VideoFolder", "Numeracy_Videos");
+                intent.putExtra("VideoFolder", "NumeracyVideos");
                 startActivity(intent);
             }
         });
@@ -52,7 +50,7 @@ public class MainVideosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), VideosActivity.class);
-                intent.putExtra("VideoFolder", "Filipino_Videos");
+                intent.putExtra("VideoFolder", "FilipinoVideos");
                 startActivity(intent);
             }
         });
@@ -61,7 +59,7 @@ public class MainVideosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), VideosActivity.class);
-                intent.putExtra("VideoFolder", "Readings_Videos");
+                intent.putExtra("VideoFolder", "ReadingsVideos");
                 startActivity(intent);
             }
         });
@@ -70,7 +68,7 @@ public class MainVideosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), VideosActivity.class);
-                intent.putExtra("VideoFolder", "LanguageLiteracy_Videos");
+                intent.putExtra("VideoFolder", "LanguageLiteracyVideos");
                 startActivity(intent);
             }
         });

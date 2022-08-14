@@ -2,7 +2,6 @@ package com.example.kg_cai.adapter;
 
 import static com.example.kg_cai.SetsActivity.setsList;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class SetsAdapter extends RecyclerView.Adapter<SetsAdapter.ViewHolder> {
     public static String setTitle;
-    private List<SetsModelClass> sets_list;
+    private final List<SetsModelClass> sets_list;
 
     public SetsAdapter(List<SetsModelClass> sets_list) {
 
@@ -41,7 +40,7 @@ public class SetsAdapter extends RecyclerView.Adapter<SetsAdapter.ViewHolder> {
         return setsList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView setName;
 
@@ -63,10 +62,8 @@ public class SetsAdapter extends RecyclerView.Adapter<SetsAdapter.ViewHolder> {
                 public void onClick(View v) {
 
                     Intent intent = new Intent(itemView.getContext(), QuestionActivity.class); //question activity will start after clicking one set
-                    intent.putExtra("SETNO", pos);
+                    intent.putExtra("setNo", pos);
                     itemView.getContext().startActivity(intent);
-
-
                 }
             });
 

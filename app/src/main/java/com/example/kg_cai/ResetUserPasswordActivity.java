@@ -3,15 +3,12 @@ package com.example.kg_cai;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -47,7 +44,6 @@ public class ResetUserPasswordActivity extends AppCompatActivity {
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     txtEmail.setError("Please enter a valid Email Address");
                     txtEmail.requestFocus();
-                    return;
                 }
                 else if(email.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_SHORT).show();

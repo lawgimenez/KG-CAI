@@ -13,12 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.kg_cai.adapter.TextRecogAdapter;
 import com.example.kg_cai.helpers.TextRecogModel;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -45,18 +43,18 @@ public class TextRecognitionActivity extends AppCompatActivity {
     private Button btnScan;
     private FloatingActionButton btnCapture;
     private TextView txtScanText;
-    private RecyclerView textRecogRv;
-    private ImageView imgTextRecog;
+    private RecyclerView textRecognitionRv;
+    private ImageView imgTextRecognition;
     Bitmap imageBitmap;
 
     FirebaseUser firebaseUser;
-    String textRecogListAct,correctAnsText;
+    String textRecognitionListAct,correctAnsText;
 
     TextRecogAdapter textRecogAdapter;
     DatabaseReference databaseReference;
     List<TextRecogModel> list;
 
-    int modified_score_textRecog = 1;
+    int modified_score_textRecognition = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +64,8 @@ public class TextRecognitionActivity extends AppCompatActivity {
         btnCapture = findViewById(R.id.captureTextImg);
         txtScanText = findViewById(R.id.txtScanText);
 
-        imgTextRecog = findViewById(R.id.imgTextRecog);
-        textRecogRv= findViewById(R.id.textRecogRv);
+        imgTextRecognition = findViewById(R.id.imgTextRecog);
+        textRecognitionRv= findViewById(R.id.textRecogRv);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("TextRecognition");
@@ -75,8 +73,8 @@ public class TextRecognitionActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setReverseLayout(true);
         manager.setStackFromEnd(true);
-        textRecogRv.setLayoutManager(manager);
-        textRecogRv.setHasFixedSize(true);
+        textRecognitionRv.setLayoutManager(manager);
+        textRecognitionRv.setHasFixedSize(true);
 
         databaseReference.orderByChild("Instructions").addValueEventListener(new ValueEventListener() {
             @Override
@@ -86,7 +84,7 @@ public class TextRecognitionActivity extends AppCompatActivity {
                     list.add(textRecogModel);
                 }
                 textRecogAdapter = new TextRecogAdapter(list, TextRecognitionActivity.this);
-                textRecogRv.setAdapter(textRecogAdapter);
+                textRecognitionRv.setAdapter(textRecogAdapter);
                 //ProgressBar.setVisibility(View.GONE);
             }
 
@@ -132,7 +130,7 @@ public class TextRecognitionActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             imageBitmap = (Bitmap) extras.get("data");
-            imgTextRecog.setImageBitmap(imageBitmap);
+            imgTextRecognition.setImageBitmap(imageBitmap);
         }
     }
 
@@ -170,9 +168,9 @@ public class TextRecognitionActivity extends AppCompatActivity {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if(snapshot.exists()){
-                                            modified_score_textRecog += Integer.parseInt(snapshot.getValue().toString());
+                                            modified_score_textRecognition += Integer.parseInt(snapshot.getValue().toString());
                                         }
-                                        snapshot.getRef().setValue(modified_score_textRecog);
+                                        snapshot.getRef().setValue(modified_score_textRecognition);
                                         TextRecognitionActivity.this.finish();
                                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                     }
