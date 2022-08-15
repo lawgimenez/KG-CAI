@@ -9,15 +9,30 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Switch;
 import com.example.kg_cai.helpers.MyServiceMusic;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class AppSettingsActivity extends AppCompatActivity {
 
     private Switch switchMusic;
 
+    private AdView mAdView; //ads
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_settings);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() { //for ads
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         switchMusic = findViewById(R.id.musicSwitch);
 

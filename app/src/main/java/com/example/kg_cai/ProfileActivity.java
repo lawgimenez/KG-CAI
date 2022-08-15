@@ -18,6 +18,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,7 +43,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
 
     private TextView txtName, txtEmail, btnChangePic, txtUserVerified;
     private CircleImageView imgProfile;
@@ -51,12 +56,24 @@ public class ProfileActivity extends AppCompatActivity {
 
     static int REQUEST_CODE = 100;
 
+    private AdView mAdView; //ads
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        toolbar = findViewById(R.id.toolbar_profile);
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() { //for ads
+//            @Override
+//            public void onInitializationComplete(InitializationStatus initializationStatus) {
+//            }
+//        });
+
+        MobileAds.initialize(this);
+
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         txtUserVerified = findViewById(R.id.txtUserVerified);
         txtEmail = findViewById(R.id.txtProfileEmail);
@@ -65,6 +82,7 @@ public class ProfileActivity extends AppCompatActivity {
         btnChangePic = findViewById(R.id.btnChangeProfile);
         btnSaveChanges = findViewById(R.id.btnSaveChanges);
 
+        Toolbar toolbar = findViewById(R.id.toolbar_profile);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -29,7 +29,7 @@ public class MyServiceMusic extends Service {
         songs.add(4, R.raw.cute_bg_music_4);
 
         final int min = 0;
-        final int max = 5;
+        final int max = 4;
         final int random = new Random().nextInt((max - min) + 1) + min; //set a random number to randomly select a index in arraylist that have songs
 
         mediaPlayer = MediaPlayer.create(getApplicationContext(), songs.get(random)); //play songs based on random number
