@@ -49,19 +49,19 @@ public class QuizResultActivity extends AppCompatActivity {
 
         tvScore.setText(score + "/" + over);
 
-        databaseReference.child("Score").child(firebaseUser.getUid()).child(catList.get(selected_cat_index).getName()+"Sets").child(setTitle).child("score")
-                .setValue(score)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "Score Recorded", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
+//        databaseReference.child("Score").child(firebaseUser.getUid()).child(catList.get(selected_cat_index).getName()+"Sets").child(setTitle).child("score")
+//                .setValue(score)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if(task.isSuccessful()){
+//                            Toast.makeText(getApplicationContext(), "Score Recorded", Toast.LENGTH_SHORT).show();
+//                        }else{
+//                            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    }
+//                });
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {

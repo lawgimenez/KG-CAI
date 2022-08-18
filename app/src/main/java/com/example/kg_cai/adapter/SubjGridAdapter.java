@@ -59,8 +59,8 @@ public class SubjGridAdapter extends BaseAdapter {
         });
 
 
-        ((TextView) view.findViewById(R.id.subjName_itemLayout)).setText(subjList.get(position).getName());
-        ((ImageView) view.findViewById(R.id.subjLogo_itemLayout)).setImageResource(imageid[position]);
+//        ((TextView) view.findViewById(R.id.subjName_itemLayout)).setText(subjList.get(position).getName());
+//        ((ImageView) view.findViewById(R.id.subjLogo_itemLayout)).setImageResource(imageid[position]);
 
 
         /**for design**/
