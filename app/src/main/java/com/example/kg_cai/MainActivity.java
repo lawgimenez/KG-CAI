@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnStartQuiz, btnTextRecognition,btnLeaderBoards, btnText_Main, btnSound_Main,btnVideo_Main;
+    private Button btnStartQuiz, btnTextRecognition,btnLeaderBoards, btnText_Main,btnVideo_Main, btnLesson_Main;
     private FirebaseAuth firebaseAuth;
 
     private AdView mAdView; //ads
@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         btnStartQuiz = findViewById(R.id.btnStartQuiz_Main);
         btnLeaderBoards = findViewById(R.id.btnLeaderboards);
         btnText_Main = findViewById(R.id.btnText_Main);
-        btnSound_Main = findViewById(R.id.btnSounds_Main);
         btnVideo_Main = findViewById(R.id.btnVideos_Main);
+        btnLesson_Main = findViewById(R.id.btnLesson_Main);
 
         //service for background music use to start
         startService(new Intent(getApplicationContext(), MyServiceMusic.class));
@@ -102,10 +102,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnSound_Main.setOnClickListener(new View.OnClickListener() {
+        btnLesson_Main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MainSoundActivity.class));
+                startActivity(new Intent(getApplicationContext(), SubjectActivity.class));
             }
         });
 

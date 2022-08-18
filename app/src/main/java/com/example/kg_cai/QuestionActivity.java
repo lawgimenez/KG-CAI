@@ -96,63 +96,63 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        getQuestionList();
+        //getQuestionList();
 
         score = 0;
     }
 
 
-    private void getQuestionList() {
-        questionList.clear();
-
-        firebaseFirestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
-                .collection(setsIDs.get(setNo)).get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                        Map<String, QueryDocumentSnapshot> docList = new ArrayMap<>();
-
-                        for(QueryDocumentSnapshot doc : queryDocumentSnapshots)
-                        {
-                            docList.put(doc.getId(),doc); //pass the id of the QueryDocumentSnapshot loop
-                        }
-
-                        QueryDocumentSnapshot quesListDoc  = docList.get("QUESTIONS_LIST");
-
-                        String count = quesListDoc.getString("COUNT"); //get the value of the COUNT in question_list
-
-                        for(int i=0; i < Integer.valueOf(count); i++)
-                        {
-                            String quesID = quesListDoc.getString("Q" + (i+1) + "_ID"); //get the id of the question in question_list
-
-                            QueryDocumentSnapshot quesDoc = docList.get(quesID);
-
-                            questionList.add(new Question( //add int questionList
-                                    quesDoc.getString("QUESTION"),
-                                    quesDoc.getString("A"),
-                                    quesDoc.getString("B"),
-                                    quesDoc.getString("C"),
-                                    quesDoc.getString("D"),
-                                    Integer.valueOf(quesDoc.getString("ANSWER"))
-                            ));
-
-                        }
-                        //once the questions are ready it will call the setQuestion method
-                        setQuestion();
-
-                        loadingDialog.dismiss();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(QuestionActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-                        loadingDialog.dismiss();
-                    }
-                });
-
-    }
+//    private void getQuestionList() {
+//        questionList.clear();
+//
+//        firebaseFirestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
+//                .collection(setsIDs.get(setNo)).get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//
+//                        Map<String, QueryDocumentSnapshot> docList = new ArrayMap<>();
+//
+//                        for(QueryDocumentSnapshot doc : queryDocumentSnapshots)
+//                        {
+//                            docList.put(doc.getId(),doc); //pass the id of the QueryDocumentSnapshot loop
+//                        }
+//
+//                        QueryDocumentSnapshot quesListDoc  = docList.get("QUESTIONS_LIST");
+//
+//                        String count = quesListDoc.getString("COUNT"); //get the value of the COUNT in question_list
+//
+//                        for(int i=0; i < Integer.valueOf(count); i++)
+//                        {
+//                            String quesID = quesListDoc.getString("Q" + (i+1) + "_ID"); //get the id of the question in question_list
+//
+//                            QueryDocumentSnapshot quesDoc = docList.get(quesID);
+//
+//                            questionList.add(new Question( //add int questionList
+//                                    quesDoc.getString("QUESTION"),
+//                                    quesDoc.getString("A"),
+//                                    quesDoc.getString("B"),
+//                                    quesDoc.getString("C"),
+//                                    quesDoc.getString("D"),
+//                                    Integer.valueOf(quesDoc.getString("ANSWER"))
+//                            ));
+//
+//                        }
+//                        //once the questions are ready it will call the setQuestion method
+//                        setQuestion();
+//
+//                        loadingDialog.dismiss();
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(QuestionActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+//                        loadingDialog.dismiss();
+//                    }
+//                });
+//
+//    }
 
     private void setQuestion() {
         txtTimer.setText(String.valueOf(15)); //timer start from the value 30

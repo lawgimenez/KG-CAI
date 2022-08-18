@@ -34,45 +34,45 @@ public class SetsActivity extends AppCompatActivity {
         setsRecyclerView = findViewById(R.id.setsRecyclerView);
 
         setSupportActionBar(setsToolbar);
-        getSupportActionBar().setTitle(catList.get(selected_cat_index).getName());
+       // getSupportActionBar().setTitle(catList.get(selected_cat_index).getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firebaseFirestore = FirebaseFirestore.getInstance(); //initialization of firestore
 
-        loadSets();
+       // loadSets();
 
     }
 
 
-    private void loadSets() {
-        setsList.clear(); //Clear the arraylist of the sets
-
-        firebaseFirestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
-                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot doc) {
-                if (doc.exists()) {
-                    long noOfSets = (long) doc.get("SETS");
-
-                    for (int i = 1; i <= noOfSets; i++) {
-                        String setName = doc.getString("SET" + String.valueOf(i) + "_NAME"); //getting the SETS NAME and loop it to get the CAT_NAME in firebase
-                        String setID = doc.getString("SET" + String.valueOf(i) + "_ID"); //getting the SETS ID and loop it to get the CAT_ID in firebase
-
-//                        Log.d("SET NAME: ", setName);
-//                        Log.d("SET ID: ", setID);
-
-                        setsList.add(new SetsModelClass(setID, setName, "0", "1"));
-                        setsIDs.add(doc.getString("SET" + String.valueOf(i) + "_ID"));
-
-
-                    }
-
-                    SetsAdapter adapter = new SetsAdapter(setsList);
-                    setsRecyclerView.setAdapter(adapter);
-                }
-            }
-        });
-    }
+//    private void loadSets() {
+//        setsList.clear(); //Clear the arraylist of the sets
+//
+//        firebaseFirestore.collection("QUIZ").document(catList.get(selected_cat_index).getId())
+//                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot doc) {
+//                if (doc.exists()) {
+//                    long noOfSets = (long) doc.get("SETS");
+//
+//                    for (int i = 1; i <= noOfSets; i++) {
+//                        String setName = doc.getString("SET" + String.valueOf(i) + "_NAME"); //getting the SETS NAME and loop it to get the CAT_NAME in firebase
+//                        String setID = doc.getString("SET" + String.valueOf(i) + "_ID"); //getting the SETS ID and loop it to get the CAT_ID in firebase
+//
+////                        Log.d("SET NAME: ", setName);
+////                        Log.d("SET ID: ", setID);
+//
+//                        setsList.add(new SetsModelClass(setID, setName, "0", "1"));
+//                        setsIDs.add(doc.getString("SET" + String.valueOf(i) + "_ID"));
+//
+//
+//                    }
+//
+//                    SetsAdapter adapter = new SetsAdapter(setsList);
+//                    setsRecyclerView.setAdapter(adapter);
+//                }
+//            }
+//        });
+//    }
 
 
     @Override

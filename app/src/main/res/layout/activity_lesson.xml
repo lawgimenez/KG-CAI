@@ -4,13 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubjectActivity"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/secondary_background"
-    >
+    tools:context=".LessonActivity"
+    android:background="@drawable/secondary_background">
+
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_subj"
+        android:id="@+id/toolbar_Lesson"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
@@ -21,14 +19,11 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/subjRecyclerView"
+        android:id="@+id/lessonRV"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:horizontalSpacing="5dp"
-        android:padding="10dp"
-        android:verticalSpacing="5dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_subj" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_Lesson" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

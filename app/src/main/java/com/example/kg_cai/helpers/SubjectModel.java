@@ -1,26 +1,29 @@
 package com.example.kg_cai.helpers;
 
 public class SubjectModel {
-    String id, name;
+    String title, subjImg;
 
-    public SubjectModel(String id, String name) {
-        this.id = id;
-        this.name = name;
+    public SubjectModel() {
     }
 
-    public String getId() {
-        return id;
+    public SubjectModel(String title, String subjImg) {
+        this.title = title;
+        this.subjImg = subjImg;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getTitle() {
+        return title;
     }
 
-    public String getName() {
-        return name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getSubjImg() {
+        return subjImg;
+    }
+
+    public void setSubjImg(String subjImg) {
+        this.subjImg = subjImg;
     }
 }
