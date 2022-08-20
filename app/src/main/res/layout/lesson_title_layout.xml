@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:layout_margin="7dp">
+    android:layout_margin="10dp">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/txtLessonName"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:gravity="center"
-        android:background="@drawable/clouds"
         android:text="TextView"
-        android:textColor="@color/blue"
-        android:textSize="22dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/bubblegum_sans"
+        android:textSize="25dp"
         android:textStyle="bold"
+        android:background="@drawable/round_bg_white_blackcorner"
+        android:backgroundTint="#FFC107"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -43,7 +43,10 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try{
                     sleep(1700); //sleep 1 second to load data and open login activity
-                    loadData();
+                    //loadData();
+
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //start the loginActivity after fetching subjects data
+                    finish();
 
                 }catch (InterruptedException e){
                     e.printStackTrace();

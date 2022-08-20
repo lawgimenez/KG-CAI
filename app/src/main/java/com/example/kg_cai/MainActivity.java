@@ -4,12 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.VideoView;
+
 import com.example.kg_cai.helpers.MyServiceMusic;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -21,34 +25,28 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnStartQuiz, btnTextRecognition,btnLeaderBoards, btnText_Main,btnVideo_Main, btnLesson_Main;
+    private Button btnStartQuiz,btnLeaderBoards,btnVideo_Main, btnLesson_Main;
     private FirebaseAuth firebaseAuth;
 
     private AdView mAdView; //ads
+    private VideoView videoMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() { //for ads
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        playBackgroundVideo();
+        showAds();
 
         //btnTextRecognition = findViewById(R.id.btnTextRecognition); ready for panel request
         btnStartQuiz = findViewById(R.id.btnStartQuiz_Main);
         btnLeaderBoards = findViewById(R.id.btnLeaderboards);
-        btnText_Main = findViewById(R.id.btnText_Main);
         btnVideo_Main = findViewById(R.id.btnVideos_Main);
         btnLesson_Main = findViewById(R.id.btnLesson_Main);
 
         //service for background music use to start
-        startService(new Intent(getApplicationContext(), MyServiceMusic.class));
+        //startService(new Intent(getApplicationContext(), MyServiceMusic.class));
 
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.mainToolbar);
         mainToolbar.inflateMenu(R.menu.main_menu);
@@ -109,12 +107,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnText_Main.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void showAds() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() { //for ads
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MainTextActivity.class));
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
+    private void playBackgroundVideo() {
+        videoMain = findViewById(R.id.videoMain);
+        String path = "android.resource://"+getPackageName()+"/"+R.raw.main_bg;
+        Uri uri = Uri.parse(path);
+        videoMain.setVideoURI(uri);
+        videoMain.start();
+
+        videoMain.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        videoMain.resume();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        videoMain.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        videoMain.stopPlayback();
+        super.onDestroy();
     }
 
     @Override

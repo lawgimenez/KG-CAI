@@ -1,22 +1,18 @@
 package com.example.kg_cai;
 
-import static com.example.kg_cai.SplashActivity.catList;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.example.kg_cai.adapter.SubjGridAdapter;
+import android.widget.VideoView;
 import com.example.kg_cai.adapter.SubjectAdapter;
 import com.example.kg_cai.helpers.SubjectModel;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +29,7 @@ import java.util.List;
 public class SubjectActivity extends AppCompatActivity {
 
     private RecyclerView subjRecyclerView;
+    private VideoView videoMain;
 
     FirebaseDatabase firebaseDatabase; //use to store URLs of uploaded files
     DatabaseReference mDBReference;
@@ -46,6 +43,7 @@ public class SubjectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
+        playBackgroundVideo();
 
         subjRecyclerView = findViewById(R.id.subjRecyclerView);
 
@@ -82,12 +80,51 @@ public class SubjectActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    private void playBackgroundVideo() {
+        videoMain = findViewById(R.id.subjMain);
+        String path = "android.resource://"+getPackageName()+"/"+R.raw.third_bg;
+        Uri uri = Uri.parse(path);
+        videoMain.setVideoURI(uri);
+        videoMain.start();
+
+        videoMain.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        videoMain.resume();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        videoMain.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        videoMain.stopPlayback();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button
         if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             SubjectActivity.this.finish();
         }
         return super.onOptionsItemSelected(item);

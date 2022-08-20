@@ -3,9 +3,13 @@ package com.example.kg_cai;
 import static com.example.kg_cai.adapter.SubjectAdapter.subject_picked;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.widget.VideoView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,6 +27,7 @@ import java.util.List;
 
 public class LessonTitleActivity extends AppCompatActivity {
     private RecyclerView lessonTitleRv;
+    private VideoView videoMain;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference mReference;
@@ -33,6 +38,7 @@ public class LessonTitleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_title);
+        playBackgroundVideo();
 
         lessonTitleRv = findViewById(R.id.lessonTitleRv);
 
@@ -67,18 +73,51 @@ public class LessonTitleActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
+
+    private void playBackgroundVideo() {
+        videoMain = findViewById(R.id.lessonTitleVideoMain);
+        String path = "android.resource://"+getPackageName()+"/"+R.raw.secondary_bg;
+        Uri uri = Uri.parse(path);
+        videoMain.setVideoURI(uri);
+        videoMain.start();
+
+        videoMain.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        videoMain.resume();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        videoMain.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        videoMain.stopPlayback();
+        super.onDestroy();
+    }
+
     @Override
     public void onBackPressed() {
-        LessonTitleActivity.this.finish();
         startActivity(new Intent(getApplicationContext(), SubjectActivity.class));
+        LessonTitleActivity.this.finish();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { //this is for back button
         if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(getApplicationContext(), SubjectActivity.class));
             LessonTitleActivity.this.finish();
         }
         return super.onOptionsItemSelected(item);
