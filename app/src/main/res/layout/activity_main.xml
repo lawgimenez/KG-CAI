@@ -5,8 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/primary_background"
     >
+
+    <VideoView
+        android:id="@+id/videoMain"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainToolbar" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/mainToolbar"
@@ -79,7 +87,7 @@
         android:layout_height="70dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/number_item"
         android:fontFamily="@font/bubblegum_sans"
         android:text="Study time!"
